@@ -16,6 +16,20 @@
     "experimentalDecorators": true,
     "moduleResolution": "node",
     "importHelpers": true,
+    "paths": {
+      "@jbr/shared": [
+        "dist/libraries/shared"
+      ],
+      "@jbr/elf": [
+        "dist/libraries/elf"
+      ],
+      "@jbr/ngrx": [
+        "dist/libraries/ngrx"
+      ],
+      "@jbr/ngxs": [
+        "dist/libraries/ngxs"
+      ],
+    },
     "target": "ES2022",
     "module": "ES2022",
     "useDefineForClassFields": false,

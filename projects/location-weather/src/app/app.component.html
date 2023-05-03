@@ -1,0 +1,12 @@
+<div class="container">
+  <div class="lib">
+    <a [href]="appConfig.link">
+      <img [src]="'assets/' + appConfig.type + '.' + (appConfig.iconType ?? 'png')">
+    </a>
+  </div>
+  <div class="top">
+    <search-input-container></search-input-container>
+  </div>
+  <map-container></map-container>
+  <router-outlet></router-outlet>
+</div>

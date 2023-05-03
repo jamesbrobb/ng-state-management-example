@@ -1,0 +1,5 @@
+<date-picker [current]="repos.current$ | async"
+             [min]="repos.min$ | async"
+             [max]="repos.max$ | async"
+             (dateChange)="onDateChange($event)">
+</date-picker>

@@ -1,0 +1,33 @@
+:host {
+  --gap: 10px;
+  display: block;
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+
+    .lib {
+      margin-bottom: 20px;
+      height: 100px;
+
+      img {
+        height: 100%;
+      }
+    }
+
+    .top {
+      padding-top: 20px;
+      border-top: solid 1px gainsboro;
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--gap);
+
+      search-input-container,
+      date-picker-container {
+        flex-basis: calc( calc( 100% / 2 ) - calc( var(--gap) / 2 ) );
+        flex-grow: 1;
+      }
+    }
+  }
+}
