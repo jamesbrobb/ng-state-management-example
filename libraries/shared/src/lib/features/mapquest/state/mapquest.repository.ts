@@ -4,9 +4,12 @@ import {MapLocation, MapLocationSummary} from "../models/mapquest.models";
 
 
 export interface MapquestRepository {
-  readonly active$: Observable<MapLocationSummary | null>;
+  readonly searchTerm$: Observable<string>;
+  readonly options$: Observable<MapLocation[]>;
+  readonly active$: Observable<MapLocation | undefined>;
+  readonly activeSummary$: Observable<MapLocationSummary | null>;
   readonly getLocationBySlug: (slug: string | string[]) => Observable<MapLocation | null>;
-  addLocation(location: MapLocation): void;
+  search(q: string): void;
   setActiveLocation(location: MapLocation): void;
 }
 

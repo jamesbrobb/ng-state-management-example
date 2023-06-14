@@ -1,22 +1,43 @@
-import {createStore} from "@ngneat/elf";
+import {inject} from "@angular/core";
+import {createStore, select, withProps} from "@ngneat/elf";
 import {
-  selectActiveEntity,
+  selectActiveEntity, selectAllEntities,
   selectEntityByPredicate,
-  setActiveId,
-  upsertEntities,
+  setActiveId, setEntities,
   withActiveId,
   withEntities
 } from "@ngneat/elf-entities";
-import {MapLocation, MapquestRepository, ifNonNullElseNull, convertToLocationSummary, doesLocationMatchPath} from "@jbr/shared";
-import {map} from "rxjs";
+import {
+  MapquestService,
+  MapLocation,
+  MapquestRepository,
+  initialLocationState,
+  ifNonNullElseNull,
+  convertToLocationSummary,
+  doesLocationMatchPath
+} from "@jbr/shared";
+import {map, switchMap, tap} from "rxjs";
 
 
 class ElfLocationRepository implements MapquestRepository {
 
+  readonly #service = inject(MapquestService);
+
   readonly #store = createStore(
     { name: 'locations' },
     withEntities<MapLocation>(),
-    withActiveId()
+    withActiveId(),
+    withProps<{searchTerm: string}>(initialLocationState)
+  );
+
+  readonly searchTerm$ = this.#store.pipe(select(state => state.searchTerm));
+  readonly options$ = this.#store.pipe(selectAllEntities());
+  readonly active$ = this.#store.pipe(selectActiveEntity());
+  readonly activeSummary$ = this.#store.pipe(
+    selectActiveEntity(),
+    ifNonNullElseNull(
+      convertToLocationSummary()
+    )
   );
 
   readonly getLocationBySlug = (slug: string | string[]) =>
@@ -27,15 +48,18 @@ class ElfLocationRepository implements MapquestRepository {
       map((arg) => arg || null)
     )
 
-  readonly active$ = this.#store.pipe(
-    selectActiveEntity(),
-    ifNonNullElseNull(
-      convertToLocationSummary()
-    )
-  );
+  constructor() {
+    this.searchTerm$.pipe(
+      switchMap(value => this.#service.search(value)),
+      tap(res => this.#store.update(setEntities(res)))
+    ).subscribe();
+  }
 
-  addLocation(location: MapLocation): void {
-    this.#store.update(upsertEntities(location));
+  search(q: string): void {
+    this.#store.update(state => ({
+      ...state,
+      searchTerm: q
+    }))
   }
 
   setActiveLocation(location: MapLocation): void {

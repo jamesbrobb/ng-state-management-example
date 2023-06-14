@@ -10,6 +10,7 @@ const adapter: EntityAdapter<MapLocation> = createEntityAdapter<MapLocation>();
 
 const initialState: State = adapter.getInitialState({
   activeId: null,
+  searchTerm: ''
 });
 
 
@@ -17,29 +18,45 @@ export const locationFeature = createFeature({
   name: 'location',
   reducer: createReducer(
     initialState,
-    on(LocationActions.addLocation, (state, {location}) => {
-      return adapter.addOne(location, state);
-    }),
-    on(LocationActions.setActiveLocation, (state, {activeId}) => ({
+    on(LocationActions.searchForLocation, (state, {term}) => ({
         ...state,
-        activeId
+        searchTerm: term,
+        activeId: null
       })
+    ),
+    on(LocationActions.locationSearchSuccess, (state, {locations}) =>
+      adapter.setAll(locations, state)
+    ),
+    on(LocationActions.setActiveLocation, (state, {activeId}) => {
+        const loc = state.entities[activeId];
+        return adapter.setAll(
+          loc ? [loc] : [],
+          {
+            ...state,
+            activeId
+          }
+        )
+      }
     )
   ),
-  extraSelectors: ({selectEntities, selectActiveId}) => ({
+  extraSelectors: ({selectLocationState, selectEntities, selectActiveId}) => ({
+    selectAll: createSelector(
+      selectLocationState,
+      adapter.getSelectors().selectAll
+    ),
     getActiveLocation: createSelector(
       selectEntities,
       selectActiveId,
-      (locations, activeId): MapLocation | null => {
+      (locations, activeId): MapLocation | undefined => {
 
         if(!activeId) {
-          return null;
+          return;
         }
 
         const location = locations[activeId];
 
         if(!location) {
-          return null
+          return;
         }
 
         return location

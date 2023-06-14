@@ -13,7 +13,7 @@ class ElfAppRepository implements AppRepository {
 
   currentWeather$: Observable<WeatherResponseData[] | null> = of(null);
 
-  /*this.#mapquest.active$.pipe(
+  /*this.#mapquest.activeSummary$.pipe(
     switchMap(location => this.#weather.getLocationByKey(`${location.lat}${location.long}`)),
     tap(arg => console.log('1', arg)),
     filter((arg) => !!arg),
@@ -21,7 +21,7 @@ class ElfAppRepository implements AppRepository {
   )*/
 
   /*currentWeather$ = combineLatest([
-    this.mapquest.active$,
+    this.mapquest.activeSummary$,
     this.weather.locations$
   ]).pipe(
     map(([location, weather]) => weather[`${location.lat}${location.long}`]),
@@ -31,7 +31,7 @@ class ElfAppRepository implements AppRepository {
 
   constructor() {
 
-    /*this.#mapquest.active$
+    /*this.#mapquest.activeSummary$
       .pipe(
         filterUndefinedOrNull(),
         tap((loc) => this.#router.navigate([

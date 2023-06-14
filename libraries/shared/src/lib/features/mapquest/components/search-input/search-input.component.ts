@@ -1,23 +1,16 @@
 import {
-  ChangeDetectionStrategy,
-  Component,
-  effect, EnvironmentInjector,
-  EventEmitter,
-  inject, Injector,
-  Output, QueryList,
-  Signal,
-  ViewChild, ViewChildren
+  ChangeDetectionStrategy, Component, DestroyRef,
+  EventEmitter, inject, Input, Output, QueryList,
+  signal, SimpleChanges, ViewChild
 } from '@angular/core';
 import {NgFor, NgIf} from '@angular/common';
-import {MapquestService} from "../../services/mapquest.service";
 import {MatInputModule} from "@angular/material/input";
-import {MatAutocomplete, MatAutocompleteModule, MatAutocompleteTrigger} from "@angular/material/autocomplete";
+import {MatAutocomplete, MatAutocompleteModule} from "@angular/material/autocomplete";
 import {FormControl, FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {map} from "rxjs";
-import {SearchTypeAheadService} from "../../services/search-type-ahead.service";
-import {MapLocation} from "../../models/mapquest.models";
-import {toSignal} from "@angular/core/rxjs-interop";
+import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 import {MatOption} from "@angular/material/core";
+import {debounceTime, distinctUntilChanged, filter, map, MonoTypeOperatorFunction, of, switchMap} from "rxjs";
+import {MapLocation} from "../../models/mapquest.models";
 
 @Component({
   selector: 'place-search-input',
@@ -30,49 +23,71 @@ import {MatOption} from "@angular/material/core";
     MatInputModule,
     MatAutocompleteModule
   ],
-  providers: [{
-    provide: SearchTypeAheadService,
-    useFactory: (dep: MapquestService) => new SearchTypeAheadService(dep),
-    deps: [MapquestService]
-  }],
   templateUrl: './search-input.component.html',
   styleUrls: ['./search-input.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SearchInputComponent {
 
-  @ViewChild(MatAutocompleteTrigger, {static:false}) trigger!: MatAutocompleteTrigger;
+  readonly options = signal<MapLocation[] | null>(null);
+  readonly myControl = new FormControl<MapLocation | string>('');
+  readonly destroyRef = inject(DestroyRef);
 
-  @ViewChildren('option')
-  private matOptions!: QueryList<MatOption>;
+  @Input('options') set _options(value: MapLocation[] | null) {
+    this.options.set(value)
+  }
+  @Input() selected: MapLocation | null = null;
+
+  @Output() readonly inputChange = this.myControl.valueChanges.pipe(
+    map(arg => arg || ''),
+    filter((arg): arg is string => typeof arg === 'string'),
+    debounceTime(300),
+    distinctUntilChanged()
+  );
+  @Output() readonly selectionChange = new EventEmitter<MapLocation>();
 
   @ViewChild(MatAutocomplete, {static:false})
-  private autoComplete!:MatAutocomplete;
+  autoComplete!: MatAutocomplete;
 
-  @Output() selectionChange = new EventEmitter<MapLocation>();
+  get showResults(): boolean {
+    return typeof this.myControl.value === 'string' && this.myControl.value.length > 2;
+  }
 
-  readonly service = inject(SearchTypeAheadService);
-  readonly myControl = new FormControl('');
-  readonly options = toSignal(this.service.options$, {initialValue: null});
 
-  private _input: Signal<string> = toSignal(
-    this.myControl.valueChanges.pipe(map(arg => arg || '')),
-    {initialValue: ''}
-  );
+  ngOnChanges(changes: SimpleChanges) {
 
-  private _options?: Signal<MatOption>;
+    if(this.myControl.value === this.selected || this.selected === null) {
+      return;
+    }
 
-  constructor(private _injector: EnvironmentInjector) {
-    effect(() => this.service.search(this._input()));
+    this.myControl.setValue(this.selected);
   }
 
   ngAfterViewInit() {
-    this._options = this._injector.runInContext(() => toSignal(this.matOptions.changes));
-    effect(() => console.log((this._options as Signal<MatOption>)()), {injector: this._injector})
+    this.autoComplete.options.changes.pipe(
+      takeUntilDestroyed(this.destroyRef),
+      syncOptionSelection(() => this.selected),
+    ).subscribe();
   }
 
   getLabel(arg: MapLocation | null): string {
-    console.log(arg);
     return arg ? arg.displayString : '';
   }
+}
+
+const syncOptionSelection = (selected: () => MapLocation | null): MonoTypeOperatorFunction<QueryList<MatOption<any>>> => {
+  return (source$) =>
+    source$.pipe(
+      switchMap(
+        (list: QueryList<MatOption<any>>) => {
+          list.forEach(
+            (opt) => {
+              opt.value === selected() ? opt.select() : opt.deselect()
+            }
+          );
+
+          return of(list);
+        }
+      )
+    )
 }

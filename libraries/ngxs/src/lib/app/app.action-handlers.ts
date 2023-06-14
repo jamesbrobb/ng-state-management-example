@@ -19,7 +19,7 @@ export class AppActionHandlers {
     this.#actions.pipe(
       ofActionSuccessful(DateActions.SetCurrentDate, LocationActions.SetActive),
       withLatestFrom(
-        this.#location.active$,
+        this.#location.activeSummary$,
         this.#date.current$
       ),
       tap(([action, location, date]) => {

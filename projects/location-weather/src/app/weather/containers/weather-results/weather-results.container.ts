@@ -2,11 +2,12 @@ import {Component, inject, Input} from '@angular/core';
 import {AsyncPipe} from "@angular/common";
 import {WEATHER_REPOSITORY, WeatherLocationData, WeatherResultsComponent} from "@jbr/shared";
 import {Observable} from "rxjs";
+import {DatePickerContainer} from "../../../date/containers/date-picker/date-picker.container";
 
 @Component({
   selector: 'weather-results-container',
   standalone: true,
-  imports: [WeatherResultsComponent, AsyncPipe, WeatherResultsComponent],
+  imports: [WeatherResultsComponent, AsyncPipe, WeatherResultsComponent, DatePickerContainer],
   templateUrl: './weather-results.container.html',
   styleUrls: ['./weather-results.container.css']
 })

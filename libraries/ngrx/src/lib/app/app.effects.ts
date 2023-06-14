@@ -22,7 +22,7 @@ export class AppEffects {
         setCurrentDate
       ),
       concatLatestFrom(() => [
-        this.#location.active$,
+        this.#location.activeSummary$,
         this.#date.current$
       ]),
       tap(([action, location, date]) => {

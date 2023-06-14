@@ -1,12 +1,15 @@
 import { Routes } from '@angular/router';
-import {locationGuard} from "./location/location.guards";
+import {preventDirectAccess} from "./router/router.guards";
+
 
 export const getAppRoutes = (title: string): Routes => [{
   path:'',
   title,
   children: [{
     path: 'location',
-    canActivate: [locationGuard],
+    canActivate: [
+      preventDirectAccess
+    ],
     loadChildren: () => import('./location/location.routes').then(mod => mod.LOCATION_ROUTES)
   }]
 }, {

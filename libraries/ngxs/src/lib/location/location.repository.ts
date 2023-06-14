@@ -9,7 +9,7 @@ class NGXSLocationRepository implements MapquestRepository {
 
   readonly #store = inject(Store);
 
-  readonly active$ = this.#store.select(LocationStore.active)
+  readonly activeSummary$ = this.#store.select(LocationStore.active)
     .pipe(
       ifNonNullElseNull(
         convertToLocationSummary()

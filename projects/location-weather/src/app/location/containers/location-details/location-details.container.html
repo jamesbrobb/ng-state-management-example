@@ -1,1 +1,32 @@
-<date-picker-container></date-picker-container>
+
+<mat-accordion>
+
+  <ng-container *ngIf="url|async as current">
+
+    <mat-expansion-panel [expanded]="current === 'weather'" [routerLink]="['./weather']">
+
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Weather
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+
+      <router-outlet></router-outlet>
+
+    </mat-expansion-panel>
+
+    <mat-expansion-panel [expanded]="current === 'eating-out'" [routerLink]="['./eating-out']">
+
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Eating out
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+
+      <router-outlet></router-outlet>
+
+    </mat-expansion-panel>
+
+  </ng-container>
+
+</mat-accordion>

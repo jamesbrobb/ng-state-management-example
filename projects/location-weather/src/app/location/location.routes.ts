@@ -1,26 +1,33 @@
 import {Routes} from "@angular/router";
-import {weatherGuard} from "../weather/weather.guards";
 import {LocationDetailsContainer} from "./containers/location-details/location-details.container";
 import {locationMatcher} from "./location.matcher";
-import {locationResolve} from "./location.resolve";
+import {hasActiveLocation, setActiveLocation} from "./location.guards";
 
 
 export const LOCATION_ROUTES: Routes = [{
   matcher: locationMatcher,
-  resolve: {
-    location: locationResolve
-  },
+  canActivate: [
+    setActiveLocation
+  ],
   providers: [
 
   ],
+  component: LocationDetailsContainer,
   children: [{
     path: '',
     redirectTo: 'weather',
     pathMatch: 'full'
   },{
     path: 'weather',
-    canActivate: [weatherGuard],
+    canActivate: [
+      hasActiveLocation
+    ],
     loadChildren: () => import('../weather/weather.routes').then(mod => mod.WEATHER_ROUTES)
-  }],
-  component: LocationDetailsContainer
+  }, {
+    path: 'eating-out',
+    canActivate: [
+      hasActiveLocation
+    ],
+    loadChildren: () => import('../eating-out/eating-out.routes').then(mod => mod.EATING_OUT_ROUTES)
+  }]
 }]

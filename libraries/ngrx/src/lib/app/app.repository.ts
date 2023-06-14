@@ -10,7 +10,7 @@ class NGRXAppRepository implements AppRepository {
   readonly currentWeather$ = of(null)
 
   /*
-  this.#location.active$.pipe(
+  this.#location.activeSummary$.pipe(
     switchMap(location => this.#weather.getLocationByKey(`${location.lat}${location.long}`))
   );
   */

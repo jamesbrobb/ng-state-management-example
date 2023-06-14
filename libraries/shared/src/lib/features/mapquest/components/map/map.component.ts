@@ -22,6 +22,8 @@ export class MapComponent implements OnChanges {
 
   #leaflet: any;
   #map?: Map;
+  #marker?: Marker;
+
   constructor(
     private loader: ResourceLoaderService
   ) {}
@@ -35,16 +37,22 @@ export class MapComponent implements OnChanges {
   }
 
   ngOnChanges(): void {
-    if(!this.#map || !this.currentLocation) {
+
+    if(!this.#map) {
+      return;
+    }
+
+    this.#removeMarker();
+
+    if(!this.currentLocation) {
+      this.#setView([0, 0]);
       return;
     }
 
     const coords: LatLngExpression = [this.currentLocation.lat, this.currentLocation.long];
 
-    this.#map.setView(coords, 14);
-
-    const marker: Marker = this.#leaflet.marker(coords);
-    marker.addTo(this.#map);
+    this.#setView(coords, 14);
+    this.#addMarker(coords);
   }
 
   #mapLoaded() {
@@ -59,6 +67,30 @@ export class MapComponent implements OnChanges {
     });
 
     mapquest.control().addTo(this.#map);
+  }
+
+  #setView(coords: LatLngExpression, zoom = 2): void {
+    if(!this.#map) {
+      return;
+    }
+    this.#map.setView(coords, zoom);
+  }
+
+  #removeMarker(): void {
+    if (!this.#map || !this.#marker) {
+      return;
+    }
+
+    this.#map.removeLayer(this.#marker);
+  }
+
+  #addMarker(coords: LatLngExpression): void {
+    if(!this.#map) {
+      return;
+    }
+
+    this.#marker = this.#leaflet.marker(coords);
+    this.#marker!.addTo(this.#map!);
   }
 }
 

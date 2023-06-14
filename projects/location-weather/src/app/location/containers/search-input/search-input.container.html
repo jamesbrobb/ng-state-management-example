@@ -1,2 +1,7 @@
-<place-search-input (selectionChange)="selectLocation($event)"></place-search-input>
+<place-search-input
+  [options]="(options$ | async) || null"
+  [selected]="(active$ | async) || null"
+  (inputChange)="onInputChange($event)"
+  (selectionChange)="onSelectLocation($event)">
+</place-search-input>
 

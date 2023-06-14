@@ -9,17 +9,19 @@
            [matAutocomplete]="auto">
 
     <mat-autocomplete [displayWith]="getLabel" (optionSelected)="selectionChange.emit($event.option.value)" #auto="matAutocomplete">
-      <ng-container *ngIf="options() as options">
-        <ng-container *ngIf="options.length > 0; else noResults">
-          <mat-option #option *ngFor="let option of options" [value]="option" >
-            {{option['displayString']}}
-          </mat-option>
+      <ng-container *ngIf="showResults">
+        <ng-container *ngIf="options() as options">
+          <ng-container *ngIf="options.length > 0; else noResults">
+            <mat-option #option *ngFor="let option of options" [value]="option" >
+              {{option['displayString']}}
+            </mat-option>
+          </ng-container>
+          <ng-template #noResults>
+            <mat-option [disabled]="true">
+              No matches found
+            </mat-option>
+          </ng-template>
         </ng-container>
-        <ng-template #noResults>
-          <mat-option [disabled]="true">
-            No matches found
-          </mat-option>
-        </ng-template>
       </ng-container>
     </mat-autocomplete>
 
