@@ -6,7 +6,7 @@ import {AppActionHandlers} from "./app.action-handlers";
 
 class NGXSAppRepository implements AppRepository {
 
-  readonly #actionHandlers = inject(AppActionHandlers);
+  //readonly #appActionHandlers = inject(AppActionHandlers);
   readonly currentWeather$ = of(null)
 
   /*

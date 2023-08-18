@@ -12,7 +12,6 @@ import {
 
 import {dateFeature} from "../date/date.reducer";
 import {locationFeature} from "../location/location.reducers";
-import {AppEffects} from "./app.effects";
 
 import {dateRepositoryFactory} from "../date/date.repository";
 import {locationRepositoryFactory} from "../location/location.repository";

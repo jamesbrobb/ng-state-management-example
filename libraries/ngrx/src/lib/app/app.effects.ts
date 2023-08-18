@@ -10,10 +10,10 @@ import {Router} from "@angular/router";
 @Injectable()
 export class AppEffects {
 
-  #actions$ = inject(Actions);
-  #location = inject(MAPQUEST_REPOSITORY);
-  #date = inject(DATE_REPOSITORY);
-  #router = inject(Router);
+  readonly #actions$ = inject(Actions);
+  readonly #location = inject(MAPQUEST_REPOSITORY);
+  readonly #date = inject(DATE_REPOSITORY);
+  readonly #router = inject(Router);
 
   getWeatherForLocation = createEffect(
     () => this.#actions$.pipe(
@@ -26,7 +26,7 @@ export class AppEffects {
         this.#date.current$
       ]),
       tap(([action, location, date]) => {
-
+        console.log(location);
         if(!location || !location.lat || !location.long || !date) {
           return;
         }

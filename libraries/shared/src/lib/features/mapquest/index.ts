@@ -1,6 +1,6 @@
 export * from "./helpers/mapquest.helpers";
 export {convertToLocationSummary} from "./operators/mapquest.operators";
-export {initialLocationState, LocationState} from "./state/mapquest.state";
+export {initialLocationState, LocationState, LocationEntities} from "./state/mapquest.state";
 export {MapLocation, MapLocationSummary} from "./models/mapquest.models";
 export {MapquestService} from "./services/mapquest.service";
 export {MAPQUEST_REPOSITORY, MapquestRepository} from "./state/mapquest.repository";
