@@ -3,7 +3,7 @@ import {bootstrapApplication} from "@angular/platform-browser";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {HttpClientModule} from "@angular/common/http";
 import {provideRouter, withDebugTracing} from "@angular/router";
-import {APP_CONFIG} from "@jbr/shared";
+import {APP_CONFIG, MAPQUEST_KEY, METEOMATICS_AUTH} from "@jbr/shared";
 
 import {environment} from "./environments/environment";
 import {AppComponent} from "./app/app.component";
@@ -29,6 +29,14 @@ bootstrapApplication(AppComponent, {
     {
       provide: APP_CONFIG,
       useValue: config
+    },
+    {
+      provide: MAPQUEST_KEY,
+      useValue: environment.MAPQUEST_KEY
+    },
+    {
+      provide: METEOMATICS_AUTH,
+      useValue: environment.METEOMATICS_AUTH
     },
     provideRouter(
       getAppRoutes(config.type as string),

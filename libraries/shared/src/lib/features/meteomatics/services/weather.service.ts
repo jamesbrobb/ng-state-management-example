@@ -1,9 +1,10 @@
-import {inject, Injectable} from "@angular/core";
+import {inject, Injectable, InjectionToken} from "@angular/core";
 import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 import {iif, map, Observable, of, Subject, switchMap} from "rxjs";
 
 
-export const API = 'https://api.meteomatics.com'
+export const API = 'https://api.meteomatics.com';
+export const LOGIN_URI = 'https://login.meteomatics.com/api/v1/token';
 
 export enum WEATHER_PARAM {
   WIND_SPEED='wind_speed_10m:ms',
@@ -54,11 +55,15 @@ export type WeatherResponseCoordData = {
   }]
 }
 
+export const METEOMATICS_AUTH = new InjectionToken<string>('METEOMATICS_AUTH')
+
 @Injectable({providedIn: 'root'})
 export class WeatherService {
 
-  private _http = inject(HttpClient);
-  private _accessToken?: string;
+  #http = inject(HttpClient);
+  #auth_token = inject(METEOMATICS_AUTH);
+
+  #accessToken?: string;
 
   #token = new Subject();
 
@@ -75,7 +80,7 @@ export class WeatherService {
           'json'
         ].join('/');
 
-        return this._http.get<WeatherResponse>(uri, {params: new HttpParams({fromString: `access_token=${token}`})})
+        return this.#http.get<WeatherResponse>(uri, {params: new HttpParams({fromString: `access_token=${token}`})})
           .pipe(map(response => response.data));
       })
     )
@@ -84,17 +89,20 @@ export class WeatherService {
   private _auth(): Observable<string> {
 
     return iif(
-      () => !this._accessToken,
+      () => !this.#accessToken,
       of('').pipe(switchMap(() => {
         const headers = new HttpHeaders({
-          Authorization: 'Basic ' +btoa('jamesrobbltd_robb:S92Cdw0TBr')
+          Authorization: 'Basic ' +btoa(this.#auth_token)
         });
-        return this._http.get<{access_token: string, token_type: string}>('https://login.meteomatics.com/api/v1/token', {headers})
+        return this.#http.get<{
+          access_token: string,
+          token_type: string
+        }>(LOGIN_URI, {headers})
           .pipe(
-            map(response => this._accessToken = response.access_token)
+            map(response => this.#accessToken = response.access_token)
           );
       })),
-      of(this._accessToken as string)
+      of(this.#accessToken as string)
     );
   }
 }

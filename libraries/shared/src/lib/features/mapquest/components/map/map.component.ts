@@ -1,7 +1,8 @@
-import {Component, Input, OnChanges, Renderer2} from '@angular/core';
+import {Component, inject, Input, OnChanges, Renderer2} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {LatLngExpression, Map, Marker} from "leaflet";
 import {ResourceLoaderService} from "../../../../utils/resource-loader.service";
+import {MAPQUEST_KEY} from "../../services/mapquest.service";
 
 
 @Component({
@@ -20,6 +21,7 @@ export class MapComponent implements OnChanges {
 
   @Input() currentLocation?: any;
 
+  #key = inject(MAPQUEST_KEY)
   #leaflet: any;
   #map?: Map;
   #marker?: Marker;
@@ -59,7 +61,7 @@ export class MapComponent implements OnChanges {
     this.#leaflet = window['L'];
 
     const mapquest = this.#leaflet.mapquest;
-    mapquest.key = '8hyjFGdGNNpSaV4MrCbVE7cnBbVZYSUZ';
+    mapquest.key = this.#key;
     this.#map = mapquest.map('my-map', {
       center: [0, 0],
       layers: mapquest.tileLayer('map'),
