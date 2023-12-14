@@ -212,14 +212,14 @@
             "development": {
               "browserTarget": "location-weather:build:development"
             },
-            "elf": {
-              "browserTarget": "location-weather:build:elf"
+            "elf-dev": {
+              "browserTarget": "location-weather:build:elf-dev"
             },
-            "ngrx": {
-              "browserTarget": "location-weather:build:ngrx"
+            "ngrx-dev": {
+              "browserTarget": "location-weather:build:ngrx-dev"
             },
-            "ngxs": {
-              "browserTarget": "location-weather:build:ngxs"
+            "ngxs-dev": {
+              "browserTarget": "location-weather:build:ngxs-dev"
             }
           },
           "defaultConfiguration": "development"
