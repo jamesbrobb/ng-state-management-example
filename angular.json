@@ -101,7 +101,7 @@
               "sourceMap": true,
               "namedChunks": true
             },
-            "elf": {
+            "elf-dev": {
               "buildOptimizer": false,
               "optimization": false,
               "vendorChunk": true,
@@ -119,7 +119,21 @@
                 "with": "projects/location-weather/src/configurations/elf/weather.providers.ts"
               }]
             },
-            "ngrx": {
+            "elf-prod": {
+              "outputPath": "dist/location-weather/elf",
+              "outputHashing": "all",
+              "fileReplacements": [{
+                "replace": "projects/location-weather/src/app/app.config.ts",
+                "with": "projects/location-weather/src/configurations/elf/app.config.ts"
+              }, {
+                "replace": "projects/location-weather/src/app/app.providers.ts",
+                "with": "projects/location-weather/src/configurations/elf/app.providers.ts"
+              }, {
+                "replace": "projects/location-weather/src/app/weather/weather.providers.ts",
+                "with": "projects/location-weather/src/configurations/elf/weather.providers.ts"
+              }]
+            },
+            "ngrx-dev": {
               "buildOptimizer": false,
               "optimization": false,
               "vendorChunk": true,
@@ -137,13 +151,41 @@
                 "with": "projects/location-weather/src/configurations/ngrx/weather.providers.ts"
               }]
             },
-            "ngxs": {
+            "ngrx-prod": {
+              "outputPath": "dist/location-weather/ngrx",
+              "outputHashing": "all",
+              "fileReplacements": [{
+                "replace": "projects/location-weather/src/app/app.config.ts",
+                "with": "projects/location-weather/src/configurations/ngrx/app.config.ts"
+              }, {
+                "replace": "projects/location-weather/src/app/app.providers.ts",
+                "with": "projects/location-weather/src/configurations/ngrx/app.providers.ts"
+              }, {
+                "replace": "projects/location-weather/src/app/weather/weather.providers.ts",
+                "with": "projects/location-weather/src/configurations/ngrx/weather.providers.ts"
+              }]
+            },
+            "ngxs-dev": {
               "buildOptimizer": false,
               "optimization": false,
               "vendorChunk": true,
               "extractLicenses": false,
               "sourceMap": true,
               "namedChunks": true,
+              "fileReplacements": [{
+                "replace": "projects/location-weather/src/app/app.config.ts",
+                "with": "projects/location-weather/src/configurations/ngxs/app.config.ts"
+              }, {
+                "replace": "projects/location-weather/src/app/app.providers.ts",
+                "with": "projects/location-weather/src/configurations/ngxs/app.providers.ts"
+              }, {
+                "replace": "projects/location-weather/src/app/weather/weather.providers.ts",
+                "with": "projects/location-weather/src/configurations/ngxs/weather.providers.ts"
+              }]
+            },
+            "ngxs-prod": {
+              "outputPath": "dist/location-weather/ngxs",
+              "outputHashing": "all",
               "fileReplacements": [{
                 "replace": "projects/location-weather/src/app/app.config.ts",
                 "with": "projects/location-weather/src/configurations/ngxs/app.config.ts"
