@@ -121,6 +121,7 @@
             },
             "elf-prod": {
               "outputPath": "dist/location-weather/elf",
+              "baseHref": "/elf/",
               "outputHashing": "all",
               "fileReplacements": [{
                 "replace": "projects/location-weather/src/app/app.config.ts",
@@ -153,6 +154,7 @@
             },
             "ngrx-prod": {
               "outputPath": "dist/location-weather/ngrx",
+              "baseHref": "/ngrx/",
               "outputHashing": "all",
               "fileReplacements": [{
                 "replace": "projects/location-weather/src/app/app.config.ts",
@@ -185,6 +187,7 @@
             },
             "ngxs-prod": {
               "outputPath": "dist/location-weather/ngxs",
+              "baseHref": "/ngxs/",
               "outputHashing": "all",
               "fileReplacements": [{
                 "replace": "projects/location-weather/src/app/app.config.ts",
