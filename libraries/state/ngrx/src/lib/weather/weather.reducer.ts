@@ -1,5 +1,6 @@
 import {createFeature, createReducer, createSelector, on} from "@ngrx/store";
-import {initialWeatherState, WeatherState, WeatherResponseData} from "@jbr/shared";
+import {WeatherResponseData} from "@jbr/shared";
+import {initialWeatherState, WeatherState} from '@jbr/state/shared';
 import * as WeatherActions from "./weather.actions";
 
 

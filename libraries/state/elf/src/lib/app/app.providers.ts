@@ -1,9 +1,5 @@
-import {
-  DATE_REPOSITORY,
-  MAPQUEST_REPOSITORY,
-  APP_REPOSITORY,
-  GetProvidersFn
-} from "@jbr/shared";
+import {GetProvidersFn} from "@jbr/shared";
+import {DATE_REPOSITORY, MAPQUEST_REPOSITORY, APP_REPOSITORY,} from "@jbr/state/shared";
 
 import {dateRepositoryFactory} from "../date/date.repository";
 import {locationRepositoryFactory} from "../location/location.repository";

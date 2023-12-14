@@ -1,5 +1,5 @@
 import {inject} from "@angular/core";
-import {AppRepository} from "@jbr/shared";
+import {AppRepository} from "@jbr/state/shared";
 import {of} from "rxjs";
 import {AppActionHandlers} from "./app.action-handlers";
 

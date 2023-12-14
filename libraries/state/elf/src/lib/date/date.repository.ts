@@ -1,5 +1,5 @@
 import {createStore, select, withProps} from "@ngneat/elf";
-import {DateState, initialDateState, DateRepository} from "@jbr/shared";
+import {DateState, initialDateState, DateRepository} from "@jbr/state/shared";
 
 
 const store = createStore(

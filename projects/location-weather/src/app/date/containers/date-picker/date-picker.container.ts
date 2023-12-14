@@ -1,6 +1,7 @@
 import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
 import {AsyncPipe} from "@angular/common";
-import {DATE_REPOSITORY, DatePickerComponent} from "@jbr/shared";
+import {DatePickerComponent} from "@jbr/shared";
+import {DATE_REPOSITORY} from "@jbr/state/shared";
 
 @Component({
   selector: 'date-picker-container',

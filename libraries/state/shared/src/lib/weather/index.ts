@@ -1,2 +1,2 @@
 export {WEATHER_REPOSITORY, WeatherRepository} from "./weather.repository";
-export {initialWeatherState, WeatherState} from "./weather.state";
+export {initialWeatherState, WeatherState, WeatherLocationMap} from "./weather.state";

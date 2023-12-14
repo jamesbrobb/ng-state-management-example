@@ -1,13 +1,7 @@
 import {Action, Selector, State, StateContext, StateToken} from "@ngxs/store";
 import {inject, Injectable} from "@angular/core";
-import {
-  WEATHER_PARAM,
-  WeatherResponseData,
-  WeatherService,
-  initialWeatherState,
-  WeatherLocationMap,
-  WeatherState
-} from "@jbr/shared";
+import {WEATHER_PARAM, WeatherResponseData, WeatherService} from "@jbr/shared";
+import {WeatherState, initialWeatherState, WeatherLocationMap} from '@jbr/state/shared';
 import {WeatherActions} from "./weather.actions";
 import {tap} from "rxjs";
 

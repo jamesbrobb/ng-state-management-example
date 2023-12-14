@@ -1,6 +1,7 @@
 import {inject} from "@angular/core";
 import {Router} from "@angular/router";
-import {AppRepository, WeatherResponseData, DATE_REPOSITORY, MAPQUEST_REPOSITORY, filterUndefinedOrNull} from "@jbr/shared";
+import {WeatherResponseData, filterUndefinedOrNull} from "@jbr/shared";
+import {AppRepository, DATE_REPOSITORY, MAPQUEST_REPOSITORY} from "@jbr/state/shared";
 import {Observable, of, tap} from "rxjs";
 
 

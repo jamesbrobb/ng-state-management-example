@@ -1,5 +1,6 @@
 import {inject} from "@angular/core";
-import {WeatherRepository, WeatherLocationMap, ifNonNullElseNull, convertResponseDataToLocationData} from "@jbr/shared";
+import {ifNonNullElseNull, convertResponseDataToLocationData} from "@jbr/shared";
+import {WeatherRepository, WeatherLocationMap} from '@jbr/state/shared';
 import {Store} from "@ngxs/store";
 import {map, Observable} from "rxjs";
 import {WeatherStore} from "./weather.store";

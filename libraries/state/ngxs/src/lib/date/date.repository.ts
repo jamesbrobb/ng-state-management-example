@@ -1,6 +1,6 @@
 import {inject} from "@angular/core";
 import {Store} from "@ngxs/store";
-import {DateRepository} from "@jbr/shared";
+import {DateRepository} from "@jbr/state/shared";
 import {Observable} from "rxjs";
 import {DateActions} from "./date.actions";
 import {DateStore} from "./date.store";

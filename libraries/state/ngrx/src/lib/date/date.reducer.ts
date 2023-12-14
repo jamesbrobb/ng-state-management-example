@@ -1,6 +1,6 @@
 import {createFeature, createReducer, on} from "@ngrx/store";
 import {setCurrentDate} from "./date.actions";
-import {initialDateState} from "@jbr/shared";
+import {initialDateState} from "@jbr/state/shared";
 
 
 export const dateFeature = createFeature({

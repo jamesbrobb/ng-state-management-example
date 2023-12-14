@@ -1,11 +1,7 @@
 import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
 import {Router} from "@angular/router";
-import {
-  MAPQUEST_REPOSITORY,
-  SearchInputComponent,
-  MapLocation,
-  getUrlFragsForLocation
-} from "@jbr/shared";
+import {SearchInputComponent, MapLocation, getUrlFragsForLocation} from "@jbr/shared";
+import {MAPQUEST_REPOSITORY} from "@jbr/state/shared";
 import {AsyncPipe} from "@angular/common";
 
 

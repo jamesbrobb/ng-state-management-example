@@ -1,7 +1,7 @@
 import {Injectable} from "@angular/core";
 import {Action, Selector, State, StateContext} from "@ngxs/store";
 import {StateToken} from "@ngxs/store";
-import {DateState, initialDateState} from "@jbr/shared";
+import {DateState, initialDateState} from "@jbr/state/shared";
 import {DateActions} from "./date.actions";
 
 const DATE_STATE_TOKEN = new StateToken<DateState>('date');

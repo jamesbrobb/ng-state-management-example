@@ -1,6 +1,7 @@
 import {Component, inject} from '@angular/core';
 import {AsyncPipe} from "@angular/common";
-import {MAPQUEST_REPOSITORY, MapComponent} from "@jbr/shared";
+import {MapComponent} from "@jbr/shared";
+import {MAPQUEST_REPOSITORY} from "@jbr/state/shared";
 
 @Component({
   selector: 'map-container',

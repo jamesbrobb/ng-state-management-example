@@ -1,6 +1,7 @@
 import {inject} from "@angular/core";
 import {Store} from "@ngrx/store";
-import {ifNonNullElseNull, MapquestRepository, MapLocation, convertToLocationSummary, doesLocationMatchPath} from "@jbr/shared";
+import {ifNonNullElseNull, MapLocation, convertToLocationSummary, doesLocationMatchPath} from "@jbr/shared";
+import {MapquestRepository} from '@jbr/state/shared';
 import {searchForLocation, setActiveLocation} from "./location.actions";
 import {locationFeature} from "./location.reducers";
 import {find, from, map, switchMap} from "rxjs";

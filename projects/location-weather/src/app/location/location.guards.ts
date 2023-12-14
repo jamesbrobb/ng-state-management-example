@@ -1,6 +1,6 @@
 import {CanActivateFn} from "@angular/router";
 import {inject} from "@angular/core";
-import {MAPQUEST_REPOSITORY} from "@jbr/shared";
+import {MAPQUEST_REPOSITORY} from "@jbr/state/shared";
 import {map, tap, combineLatest, filter, withLatestFrom} from "rxjs";
 
 

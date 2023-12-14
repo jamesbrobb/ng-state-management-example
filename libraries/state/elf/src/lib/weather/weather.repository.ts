@@ -6,14 +6,12 @@ import {
   WEATHER_PARAM,
   WeatherResponseData,
   WeatherService,
-  initialWeatherState,
-  WeatherState,
-  WeatherRepository,
-  WeatherLocationMap,
   WeatherLocationData,
   ifNonNullElseNull,
   convertResponseDataToLocationData
 } from "@jbr/shared";
+
+import {initialWeatherState, WeatherState, WeatherRepository, WeatherLocationMap} from "@jbr/state/shared";
 
 
 

@@ -1,5 +1,6 @@
 import {Action, Selector, State, StateContext, StateToken} from "@ngxs/store";
-import {initialLocationState, LocationState, MapLocation, LocationEntities} from "@jbr/shared";
+import {MapLocation} from "@jbr/shared";
+import {initialLocationState, LocationState, LocationEntities} from '@jbr/state/shared';
 import {Injectable} from "@angular/core";
 import {LocationActions} from "./location.actions";
 

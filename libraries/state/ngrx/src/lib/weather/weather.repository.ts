@@ -2,7 +2,8 @@ import {inject, Injectable} from "@angular/core";
 import {Store} from "@ngrx/store";
 import {getWeatherForLocation} from "./weather.actions";
 import {weatherFeature} from "./weather.reducer";
-import {ifNonNullElseNull, convertResponseDataToLocationData, WeatherRepository} from "@jbr/shared";
+import {ifNonNullElseNull, convertResponseDataToLocationData} from "@jbr/shared";
+import {WeatherRepository} from '@jbr/state/shared';
 
 
 class NGRXWeatherRepository implements WeatherRepository {

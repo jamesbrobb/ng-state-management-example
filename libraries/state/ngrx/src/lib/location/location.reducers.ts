@@ -1,6 +1,7 @@
 import {createFeature, createReducer, createSelector, on} from "@ngrx/store";
 import {createEntityAdapter, EntityAdapter, EntityState} from "@ngrx/entity";
-import {LocationState, MapLocation} from "@jbr/shared";
+import {MapLocation} from "@jbr/shared";
+import {LocationState} from '@jbr/state/shared';
 import * as LocationActions from "./location.actions";
 
 

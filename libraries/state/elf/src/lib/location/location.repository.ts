@@ -10,12 +10,11 @@ import {
 import {
   MapquestService,
   MapLocation,
-  MapquestRepository,
-  initialLocationState,
   ifNonNullElseNull,
   convertToLocationSummary,
   doesLocationMatchPath
 } from "@jbr/shared";
+import {MapquestRepository, initialLocationState} from '@jbr/state/shared';
 import {map, switchMap, tap} from "rxjs";
 
 

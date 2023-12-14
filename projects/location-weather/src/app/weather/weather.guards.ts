@@ -1,7 +1,7 @@
 import {ActivatedRouteSnapshot, CanActivateFn, RouterStateSnapshot} from "@angular/router";
 import {inject} from "@angular/core";
 import {combineLatest, map, tap} from "rxjs";
-import {MAPQUEST_REPOSITORY, DATE_REPOSITORY, WEATHER_REPOSITORY} from "@jbr/shared";
+import {MAPQUEST_REPOSITORY, DATE_REPOSITORY, WEATHER_REPOSITORY} from "@jbr/state/shared";
 
 
 export const weatherGuard: CanActivateFn = (route, state) => {

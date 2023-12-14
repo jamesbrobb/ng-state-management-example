@@ -3,12 +3,8 @@ import {provideState, provideStore} from "@ngrx/store";
 import {provideEffects} from "@ngrx/effects";
 import {provideStoreDevtools} from "@ngrx/store-devtools";
 import {provideRouterStore, routerReducer} from "@ngrx/router-store";
-import {
-  DATE_REPOSITORY,
-  MAPQUEST_REPOSITORY,
-  APP_REPOSITORY,
-  GetProvidersFn
-} from "@jbr/shared";
+import {GetProvidersFn} from "@jbr/shared";
+import {DATE_REPOSITORY, MAPQUEST_REPOSITORY, APP_REPOSITORY} from '@jbr/state/shared';
 
 import {dateFeature} from "../date/date.reducer";
 import {locationFeature} from "../location/location.reducers";

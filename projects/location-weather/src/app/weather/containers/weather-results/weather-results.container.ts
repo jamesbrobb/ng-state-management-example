@@ -1,6 +1,7 @@
 import {Component, inject, Input} from '@angular/core';
 import {AsyncPipe} from "@angular/common";
-import {WEATHER_REPOSITORY, WeatherLocationData, WeatherResultsComponent} from "@jbr/shared";
+import {WeatherLocationData, WeatherResultsComponent} from "@jbr/shared";
+import {WEATHER_REPOSITORY} from "@jbr/state/shared";
 import {Observable} from "rxjs";
 import {DatePickerContainer} from "../../../date/containers/date-picker/date-picker.container";
 

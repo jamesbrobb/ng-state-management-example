@@ -1,6 +1,6 @@
 import {inject, Injectable} from "@angular/core";
 import {Store} from "@ngrx/store";
-import {DateRepository} from "@jbr/shared";
+import {DateRepository} from '@jbr/state/shared';
 import {setCurrentDate} from "./date.actions";
 import {dateFeature} from "./date.reducer";
 
