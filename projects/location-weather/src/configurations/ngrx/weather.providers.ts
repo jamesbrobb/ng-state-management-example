@@ -1,2 +1,2 @@
-import {getWeatherProviders} from '@jbr/ngrx';
+import {getWeatherProviders} from '@jbr/state/ngrx';
 export const getProviders = getWeatherProviders;

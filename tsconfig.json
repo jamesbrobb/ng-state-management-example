@@ -20,14 +20,17 @@
       "@jbr/shared": [
         "dist/libraries/shared"
       ],
-      "@jbr/elf": [
-        "dist/libraries/elf"
+      "@jbr/state/elf": [
+        "dist/libraries/state/elf"
       ],
-      "@jbr/ngrx": [
-        "dist/libraries/ngrx"
+      "@jbr/state/ngrx": [
+        "dist/libraries/state/ngrx"
       ],
-      "@jbr/ngxs": [
-        "dist/libraries/ngxs"
+      "@jbr/state/ngxs": [
+        "dist/libraries/state/ngxs"
+      ],
+      "@jbr/state/shared": [
+        "dist/libraries/state/shared"
       ],
     },
     "target": "ES2022",

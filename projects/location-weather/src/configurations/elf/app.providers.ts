@@ -1,3 +1,3 @@
-import {getAppProviders} from "@jbr/elf";
+import {getAppProviders} from "@jbr/state/elf";
 
 export const getProviders = getAppProviders;

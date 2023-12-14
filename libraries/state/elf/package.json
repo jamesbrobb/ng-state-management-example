@@ -1,5 +1,5 @@
 {
-  "name": "@jbr/elf",
+  "name": "@jbr/state/elf",
   "version": "0.0.1",
   "peerDependencies": {
     "@angular/common": "^16.1.0",

@@ -1,3 +1,3 @@
-import {getAppProviders} from "@jbr/ngxs";
+import {getAppProviders} from "@jbr/state/ngxs";
 
 export const getProviders = getAppProviders;

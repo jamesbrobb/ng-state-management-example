@@ -1,3 +1,3 @@
-import {getAppProviders} from "@jbr/ngrx";
+import {getAppProviders} from "@jbr/state/ngrx";
 
 export const getProviders = getAppProviders;
