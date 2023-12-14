@@ -1,11 +1,11 @@
 import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {WeatherLocationData} from "../../state/weather.state";
+import {WeatherLocationData} from "../../models/meteomatics.models";
+
 
 @Component({
   selector: 'weather-results',
   standalone: true,
-  imports: [CommonModule],
+  imports: [],
   templateUrl: './weather-results.component.html',
   styleUrls: ['./weather-results.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush

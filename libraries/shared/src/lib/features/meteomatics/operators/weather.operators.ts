@@ -1,6 +1,6 @@
 import {map, Observable} from "rxjs";
 import {WeatherResponseData} from "../services/weather.service";
-import {WeatherLocationData} from "../state/weather.state";
+import {WeatherLocationData} from "../models/meteomatics.models";
 
 
 export const convertResponseDataToLocationData =
