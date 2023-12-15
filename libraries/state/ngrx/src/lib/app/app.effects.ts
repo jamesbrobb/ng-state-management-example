@@ -1,11 +1,13 @@
 import {inject, Injectable} from "@angular/core";
 import {Actions, concatLatestFrom, createEffect, ofType} from "@ngrx/effects";
-import {MAPQUEST_REPOSITORY, DATE_REPOSITORY} from '@jbr/shared';
+import {MAPQUEST_REPOSITORY, DATE_REPOSITORY} from '@jbr/state/shared';
 import {setActiveLocation} from "../location/location.actions";
 import {setCurrentDate} from "../date/date.actions";
 
 import {tap} from "rxjs";
 import {Router} from "@angular/router";
+
+/* TODO - CURRENTLY THIS IS NOT BEING USED - IT IS NOT REGISTERED IN PROVIDERS */
 
 @Injectable()
 export class AppEffects {

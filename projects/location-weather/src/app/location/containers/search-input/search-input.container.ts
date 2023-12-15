@@ -22,7 +22,7 @@ export class SearchInputContainer {
 
   onInputChange(arg: string): void {
 
-    if(this.#router.routerState.snapshot.url !== '') {
+    if(this.#router.routerState.snapshot.url !== '/') {
       this.#router.navigate(['']);
     }
 
