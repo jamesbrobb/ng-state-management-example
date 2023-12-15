@@ -1,13 +1,13 @@
 import {inject} from "@angular/core";
 import {Store} from "@ngrx/store";
 import {ifNonNullElseNull, MapLocation, convertToLocationSummary, doesLocationMatchPath} from "@jbr/shared";
-import {MapquestRepository} from '@jbr/state/shared';
+import {LocationRepository} from '@jbr/state/shared';
 import {searchForLocation, setActiveLocation} from "./location.actions";
 import {locationFeature} from "./location.reducers";
 import {find, from, map, switchMap} from "rxjs";
 
 
-class NGRXLocationRepository implements MapquestRepository {
+class NGRXLocationRepository implements LocationRepository {
   readonly #store = inject(Store);
 
   readonly searchTerm$ = this.#store.select(locationFeature.selectSearchTerm);

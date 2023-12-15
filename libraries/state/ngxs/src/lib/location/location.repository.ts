@@ -1,14 +1,14 @@
 import {inject} from "@angular/core";
 import {Store} from "@ngxs/store";
 import {MapLocation, ifNonNullElseNull, convertToLocationSummary, doesLocationMatchPath, log} from "@jbr/shared";
-import {MapquestRepository} from '@jbr/state/shared';
+import {LocationRepository} from '@jbr/state/shared';
 import {LocationActions} from "./location.actions";
 import {LocationStore} from "./location.store";
 import {find, from, map, switchMap, tap} from "rxjs";
 import {LocationActionHandlers} from "./location.action-handlers";
 
 
-class NGXSLocationRepository implements MapquestRepository {
+class NGXSLocationRepository implements LocationRepository {
 
   readonly #store = inject(Store);
   readonly #actionHandlers = inject(LocationActionHandlers);

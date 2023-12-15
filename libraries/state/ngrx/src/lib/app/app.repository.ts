@@ -1,11 +1,11 @@
 import {inject} from "@angular/core";
 import {of} from "rxjs";
-import {AppRepository, MAPQUEST_REPOSITORY} from "@jbr/state/shared";
+import {AppRepository, LOCATION_REPOSITORY} from "@jbr/state/shared";
 
 
 class NGRXAppRepository implements AppRepository {
 
-  readonly #location = inject(MAPQUEST_REPOSITORY);
+  readonly #location = inject(LOCATION_REPOSITORY);
 
   readonly currentWeather$ = of(null)
 

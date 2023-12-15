@@ -1,6 +1,6 @@
 import {inject, Injectable} from "@angular/core";
 import {Actions, concatLatestFrom, createEffect, ofType} from "@ngrx/effects";
-import {MAPQUEST_REPOSITORY, DATE_REPOSITORY} from '@jbr/state/shared';
+import {LOCATION_REPOSITORY, DATE_REPOSITORY} from '@jbr/state/shared';
 import {setActiveLocation} from "../location/location.actions";
 import {setCurrentDate} from "../date/date.actions";
 
@@ -13,7 +13,7 @@ import {Router} from "@angular/router";
 export class AppEffects {
 
   readonly #actions$ = inject(Actions);
-  readonly #location = inject(MAPQUEST_REPOSITORY);
+  readonly #location = inject(LOCATION_REPOSITORY);
   readonly #date = inject(DATE_REPOSITORY);
   readonly #router = inject(Router);
 

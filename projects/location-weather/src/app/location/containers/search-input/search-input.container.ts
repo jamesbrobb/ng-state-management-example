@@ -1,7 +1,7 @@
 import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
 import {Router} from "@angular/router";
 import {SearchInputComponent, MapLocation, getUrlFragsForLocation} from "@jbr/shared";
-import {MAPQUEST_REPOSITORY} from "@jbr/state/shared";
+import {LOCATION_REPOSITORY} from "@jbr/state/shared";
 import {AsyncPipe} from "@angular/common";
 
 
@@ -14,7 +14,7 @@ import {AsyncPipe} from "@angular/common";
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SearchInputContainer {
-  readonly #repos = inject(MAPQUEST_REPOSITORY);
+  readonly #repos = inject(LOCATION_REPOSITORY);
   readonly #router = inject(Router);
 
   readonly options$ = this.#repos.options$;

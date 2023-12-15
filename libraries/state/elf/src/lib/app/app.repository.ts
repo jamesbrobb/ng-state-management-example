@@ -1,20 +1,20 @@
 import {inject} from "@angular/core";
 import {Router} from "@angular/router";
 import {WeatherResponseData, filterUndefinedOrNull} from "@jbr/shared";
-import {AppRepository, DATE_REPOSITORY, MAPQUEST_REPOSITORY} from "@jbr/state/shared";
+import {AppRepository, DATE_REPOSITORY, LOCATION_REPOSITORY} from "@jbr/state/shared";
 import {Observable, of, tap} from "rxjs";
 
 
 class ElfAppRepository implements AppRepository {
 
-  readonly #mapquest = inject(MAPQUEST_REPOSITORY);
+  readonly #location = inject(LOCATION_REPOSITORY);
   readonly #date = inject(DATE_REPOSITORY);
 
   readonly #router = inject(Router);
 
   currentWeather$: Observable<WeatherResponseData[] | null> = of(null);
 
-  /*this.#mapquest.activeSummary$.pipe(
+  /*this.#location.activeSummary$.pipe(
     switchMap(location => this.#weather.getLocationByKey(`${location.lat}${location.long}`)),
     tap(arg => console.log('1', arg)),
     filter((arg) => !!arg),
@@ -22,7 +22,7 @@ class ElfAppRepository implements AppRepository {
   )*/
 
   /*currentWeather$ = combineLatest([
-    this.mapquest.activeSummary$,
+    this.location.activeSummary$,
     this.weather.locations$
   ]).pipe(
     map(([location, weather]) => weather[`${location.lat}${location.long}`]),
@@ -32,7 +32,7 @@ class ElfAppRepository implements AppRepository {
 
   constructor() {
 
-    /*this.#mapquest.activeSummary$
+    /*this.#location.activeSummary$
       .pipe(
         filterUndefinedOrNull(),
         tap((loc) => this.#router.navigate([

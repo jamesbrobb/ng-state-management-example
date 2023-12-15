@@ -1,2 +1,2 @@
-export {initialLocationState, LocationState, LocationEntities} from "./mapquest.state";
-export {MAPQUEST_REPOSITORY, MapquestRepository} from "./mapquest.repository";
+export {initialLocationState, LocationState, LocationEntities} from "./location.state";
+export {LOCATION_REPOSITORY, LocationRepository} from "./location.repository";

@@ -1,11 +1,11 @@
 import {CanActivateFn} from "@angular/router";
 import {inject} from "@angular/core";
-import {MAPQUEST_REPOSITORY} from "@jbr/state/shared";
+import {LOCATION_REPOSITORY} from "@jbr/state/shared";
 import {map, tap, combineLatest, filter, withLatestFrom} from "rxjs";
 
 
 export const hasActiveLocation: CanActivateFn = (route, state) => {
-  const location = inject(MAPQUEST_REPOSITORY);
+  const location = inject(LOCATION_REPOSITORY);
   return location.active$.pipe(
     tap(arg => console.log('hasActiveLocation', arg)),
     map(arg => !!arg)
@@ -13,14 +13,14 @@ export const hasActiveLocation: CanActivateFn = (route, state) => {
 }
 
 export const setActiveLocation: CanActivateFn = (route, state) => {
-  const mapquest = inject(MAPQUEST_REPOSITORY);
+  const locationRepos = inject(LOCATION_REPOSITORY);
   const slugs = route.url.map((frag) => frag.path);
 
   return combineLatest([
-    mapquest.active$,
-    mapquest.options$
+    locationRepos.active$,
+    locationRepos.options$
   ]).pipe(
-    withLatestFrom(mapquest.getLocationBySlug(slugs)),
+    withLatestFrom(locationRepos.getLocationBySlug(slugs)),
     map(([[active, locations], location], index) => {
       console.log('active', active);
       console.log('locations', locations);
@@ -41,7 +41,7 @@ export const setActiveLocation: CanActivateFn = (route, state) => {
            that we're unaware of... that said we can't go any further
            until the guard completes
          */
-        mapquest.setActiveLocation(location);
+        locationRepos.setActiveLocation(location);
       }
 
       if(!location && index === 0) {
@@ -50,7 +50,7 @@ export const setActiveLocation: CanActivateFn = (route, state) => {
           .split('-')
           .filter(arg => !numCheck.test(arg))
           .join(' ');
-        mapquest.search(q);
+        locationRepos.search(q);
       }
 
       if(!location && index > 0) {

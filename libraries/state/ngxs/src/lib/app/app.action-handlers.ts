@@ -1,6 +1,6 @@
 import {Actions, ofActionSuccessful, Store} from "@ngxs/store";
 import {inject, Injectable} from "@angular/core";
-import {MAPQUEST_REPOSITORY, DATE_REPOSITORY} from '@jbr/state/shared';
+import {LOCATION_REPOSITORY, DATE_REPOSITORY} from '@jbr/state/shared';
 import {tap, withLatestFrom} from "rxjs";
 import {DateActions} from "../date/date.actions";
 import {LocationActions} from "../location/location.actions";
@@ -14,7 +14,7 @@ export class AppActionHandlers {
   readonly #store = inject(Store);
   readonly #actions = inject(Actions);
   readonly #date = inject(DATE_REPOSITORY);
-  readonly #location = inject(MAPQUEST_REPOSITORY);
+  readonly #location = inject(LOCATION_REPOSITORY);
 
   readonly #router = inject(Router);
 

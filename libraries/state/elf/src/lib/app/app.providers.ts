@@ -1,5 +1,5 @@
 import {GetProvidersFn} from "@jbr/shared";
-import {DATE_REPOSITORY, MAPQUEST_REPOSITORY, APP_REPOSITORY,} from "@jbr/state/shared";
+import {DATE_REPOSITORY, LOCATION_REPOSITORY, APP_REPOSITORY,} from "@jbr/state/shared";
 
 import {dateRepositoryFactory} from "../date/date.repository";
 import {locationRepositoryFactory} from "../location/location.repository";
@@ -16,7 +16,7 @@ export const getProviders: GetProvidersFn = () => [
     useFactory: dateRepositoryFactory
   },
   {
-    provide: MAPQUEST_REPOSITORY,
+    provide: LOCATION_REPOSITORY,
     useFactory: locationRepositoryFactory
   }
 ]

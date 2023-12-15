@@ -4,7 +4,7 @@ import {provideEffects} from "@ngrx/effects";
 import {provideStoreDevtools} from "@ngrx/store-devtools";
 import {provideRouterStore, routerReducer} from "@ngrx/router-store";
 import {GetProvidersFn} from "@jbr/shared";
-import {DATE_REPOSITORY, MAPQUEST_REPOSITORY, APP_REPOSITORY} from '@jbr/state/shared';
+import {DATE_REPOSITORY, LOCATION_REPOSITORY, APP_REPOSITORY} from '@jbr/state/shared';
 
 import {dateFeature} from "../date/date.reducer";
 import {locationFeature} from "../location/location.reducers";
@@ -33,7 +33,7 @@ export const getProviders: GetProvidersFn = () => [
     useFactory: dateRepositoryFactory
   },
   {
-    provide: MAPQUEST_REPOSITORY,
+    provide: LOCATION_REPOSITORY,
     useFactory: locationRepositoryFactory
   },
   {

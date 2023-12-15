@@ -14,11 +14,11 @@ import {
   convertToLocationSummary,
   doesLocationMatchPath
 } from "@jbr/shared";
-import {MapquestRepository, initialLocationState} from '@jbr/state/shared';
+import {LocationRepository, initialLocationState} from '@jbr/state/shared';
 import {map, switchMap, tap} from "rxjs";
 
 
-class ElfLocationRepository implements MapquestRepository {
+class ElfLocationRepository implements LocationRepository {
 
   readonly #service = inject(MapquestService);
 
