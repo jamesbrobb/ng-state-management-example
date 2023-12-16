@@ -41,7 +41,7 @@ class ElfWeatherRepository implements WeatherRepository {
   }
 
   getWeatherForLocation(lat: number, lng: number, validdatetime: string): void {
-
+    console.log(lat, lng, validdatetime)
     this.service.get({
       validdatetime,
       location: `${lat},${lng}`,

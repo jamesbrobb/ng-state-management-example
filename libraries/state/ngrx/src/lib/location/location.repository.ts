@@ -30,6 +30,7 @@ class NGRXLocationRepository implements LocationRepository {
         )
       )
     );
+
   search(q: string): void {
     this.#store.dispatch(searchForLocation({term: q}));
   }

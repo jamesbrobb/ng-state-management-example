@@ -57,7 +57,8 @@ class ElfLocationRepository implements LocationRepository {
   search(q: string): void {
     this.#store.update(state => ({
       ...state,
-      searchTerm: q
+      searchTerm: q,
+      activeId: null
     }))
   }
 
