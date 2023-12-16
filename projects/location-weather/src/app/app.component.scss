@@ -1,5 +1,14 @@
 :host {
-  --gap: 10px;
+  --gap: 20px;
+  --content-cols: 2;
+  --map-width: calc(60% - calc(var(--gap) / 2));
+  --info-width: calc(40% - calc(var(--gap) / 2));
+
+  @media (max-width: 760px) {
+    --map-width: 100%;
+    --info-width: 100%;
+  }
+
   display: block;
 
   .container {
@@ -27,6 +36,21 @@
       date-picker-container {
         flex-basis: calc( calc( 100% / 2 ) - calc( var(--gap) / 2 ) );
         flex-grow: 1;
+      }
+    }
+
+    .content {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 20px;
+
+      .map {
+        flex: 0 0 var(--map-width);
+      }
+
+      .info {
+        flex: 0 0 var(--info-width);
       }
     }
   }
