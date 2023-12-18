@@ -22,8 +22,6 @@ export const setActiveLocation: CanActivateFn = (route, state) => {
   ]).pipe(
     withLatestFrom(locationRepos.getLocationBySlug(slugs)),
     map(([[active, locations], location], index) => {
-      console.log('active', active);
-      console.log('locations', locations);
 
       /*
         TODO - could all the following logic be shifted into a method on

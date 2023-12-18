@@ -1,13 +1,6 @@
-import {inject} from "@angular/core";
-import {of} from "rxjs";
-import {AppRepository, LOCATION_REPOSITORY} from "@jbr/state/shared";
+import {AppRepository} from "@jbr/state/shared";
 
 
-class NGRXAppRepository implements AppRepository {
-
-  readonly #location = inject(LOCATION_REPOSITORY);
-
-  readonly currentWeather$ = of(null)
-}
+class NGRXAppRepository implements AppRepository {}
 
 export const appRepositoryFactory = () => new NGRXAppRepository();

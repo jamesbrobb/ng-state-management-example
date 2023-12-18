@@ -16,7 +16,6 @@ import {LocationEffects} from "../location/location.effects";
 import {AppEffects} from "./app.effects";
 
 
-
 export const getProviders: GetProvidersFn = () => [
   provideStore({
     router: routerReducer,
