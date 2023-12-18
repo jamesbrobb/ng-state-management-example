@@ -1,11 +1,14 @@
 import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
 import {WeatherLocationData} from "../../models/meteomatics.models";
+import {NgForOf} from "@angular/common";
 
 
 @Component({
   selector: 'weather-results',
   standalone: true,
-  imports: [],
+  imports: [
+    NgForOf
+  ],
   templateUrl: './weather-results.component.html',
   styleUrls: ['./weather-results.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush

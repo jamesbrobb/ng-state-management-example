@@ -6,8 +6,8 @@ import {WeatherLocationMap} from "./weather.state";
 
 export interface WeatherRepository {
   readonly locations$: Observable<WeatherLocationMap>;
-  readonly getLocationByKey: (key: string) =>  Observable<WeatherResponseData[] | null>;
-  readonly getLocationDataByKey: (key: string) => Observable<WeatherLocationData | null>;
+  readonly getLocationByKey: (key: string) =>  Observable<{[datetime: string]:WeatherResponseData[]} | null>;
+  readonly getLocationDataByKey: (key: string, datetime: string) => Observable<WeatherLocationData | null>;
   getWeatherForLocation(lat: number, lng: number, validdatetime: string): void;
 }
 

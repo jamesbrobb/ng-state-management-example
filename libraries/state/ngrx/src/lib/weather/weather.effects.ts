@@ -16,9 +16,19 @@ export class WeatherEffects {
       switchMap(({validdatetime, lat, lng}) => this.#service.get({
         validdatetime,
         location: `${lat},${lng}`,
-        parameters: [WEATHER_PARAM.MSL_PRESSURE, WEATHER_PARAM.PRECIPITATION_24HR]
+        parameters: [
+          WEATHER_PARAM.WIND_SPEED,
+          WEATHER_PARAM.WIND_DIRECTION,
+          WEATHER_PARAM.WIND_GUSTS_24HR,
+          WEATHER_PARAM.TEMPERATURE_MIN,
+          WEATHER_PARAM.TEMPERATURE_MAX,
+          WEATHER_PARAM.PRECIPITATION_24HR,
+          WEATHER_PARAM.WEATHER_SYMBOL_24H,
+          WEATHER_PARAM.SUNRISE,
+          WEATHER_PARAM.SUNSET
+        ]
       }).pipe(
-        map(response => getWeatherSuccess({response})),
+        map(response => getWeatherSuccess({validdatetime, response})),
         catchError(error => of(getWeatherError({error})))
       )
     )

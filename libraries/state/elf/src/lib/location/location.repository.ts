@@ -59,7 +59,7 @@ class ElfLocationRepository implements LocationRepository {
       ...state,
       searchTerm: q,
       activeId: null
-    }))
+    }));
   }
 
   setActiveLocation(location: MapLocation): void {

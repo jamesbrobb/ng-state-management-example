@@ -9,7 +9,7 @@ export const getWeatherForLocation = createAction(
 
 export const getWeatherSuccess = createAction(
   '[Weather] get success',
-  props<{response: WeatherResponseData[]}>()
+  props<{validdatetime: string, response: WeatherResponseData[]}>()
 )
 
 export const getWeatherError = createAction(

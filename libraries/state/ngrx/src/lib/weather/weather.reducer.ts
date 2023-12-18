@@ -8,13 +8,16 @@ export const weatherFeature = createFeature({
   name: 'weather',
   reducer: createReducer<WeatherState>(
     initialWeatherState,
-    on(WeatherActions.getWeatherSuccess, (state, {response}) => {
+    on(WeatherActions.getWeatherSuccess, (state, {validdatetime, response}) => {
       const coord = response[0].coordinates[0];
-      const location = `${coord.lat}${coord.lon}`;
+      const location = `${coord.lat}-${coord.lon}`;
       return {
         locations: {
           ...state.locations,
-          [location]: response
+          [location]: {
+            ...state.locations[location] || {},
+            [validdatetime]: response
+          }
         }
       }
     })
@@ -22,7 +25,7 @@ export const weatherFeature = createFeature({
   extraSelectors: ({selectLocations}) => ({
     getLocationByKey: (key: string) => createSelector(
       selectLocations,
-      (locations): WeatherResponseData[] | null => locations[key]
+      (locations): {[date: string]: WeatherResponseData[]} | null => locations[key]
     )
   })
 });

@@ -13,6 +13,7 @@ import {dateRepositoryFactory} from "../date/date.repository";
 import {locationRepositoryFactory} from "../location/location.repository";
 import {appRepositoryFactory} from "./app.repository";
 import {LocationEffects} from "../location/location.effects";
+import {AppEffects} from "./app.effects";
 
 
 
@@ -23,7 +24,7 @@ export const getProviders: GetProvidersFn = () => [
   provideRouterStore(),
   provideState(dateFeature),
   provideState(locationFeature),
-  provideEffects(LocationEffects),
+  provideEffects(AppEffects, LocationEffects),
   provideStoreDevtools({
     maxAge: 25,
     logOnly: !isDevMode(),

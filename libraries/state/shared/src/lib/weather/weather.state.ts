@@ -2,7 +2,9 @@ import {WeatherResponseData} from '@jbr/shared';
 
 
 export type WeatherLocationMap = {
-  [latLng: string]: WeatherResponseData[]
+  [latLng: string]: {
+    [date: string]: WeatherResponseData[]
+  }
 }
 
 export interface WeatherState {

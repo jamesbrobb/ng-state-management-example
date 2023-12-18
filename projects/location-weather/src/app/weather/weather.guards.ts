@@ -25,7 +25,6 @@ export const getWeatherForActiveLocation: CanActivateFn = (route: ActivatedRoute
     locationRepos.activeSummary$,
     date.current$
   ]).pipe(
-    tap(([location, date]) => console.log(location, date)),
     tap(([location, date]) => {
       if(!location) {
         return;

@@ -1,5 +1,5 @@
 import {inject, Injectable} from "@angular/core";
-import {catchError, Observable, of, tap} from "rxjs";
+import {catchError, Observable, of, take, tap} from "rxjs";
 import {createStore, select, withProps} from "@ngneat/elf";
 
 import {
@@ -41,15 +41,15 @@ class ElfWeatherRepository implements WeatherRepository {
   }
 
   getWeatherForLocation(lat: number, lng: number, validdatetime: string): void {
-    console.log(lat, lng, validdatetime)
     this.service.get({
       validdatetime,
       location: `${lat},${lng}`,
       parameters: [WEATHER_PARAM.MSL_PRESSURE, WEATHER_PARAM.PRECIPITATION_24HR]
     }).pipe(
+      take(1),
       tap(this._setWeather),
       catchError((err) => of(err))
-    )
+    ).subscribe()
   }
 
   private _setWeather(arg: WeatherResponseData[]): void {

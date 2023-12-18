@@ -1,42 +1,32 @@
+import {filter, map, withLatestFrom} from "rxjs";
 import {inject, Injectable} from "@angular/core";
-import {Actions, concatLatestFrom, createEffect, ofType} from "@ngrx/effects";
-import {LOCATION_REPOSITORY, DATE_REPOSITORY} from '@jbr/state/shared';
-import {setActiveLocation} from "../location/location.actions";
+import {Actions, createEffect, ofType} from "@ngrx/effects";
+import {MapLocationSummary} from '@jbr/shared';
+import {LOCATION_REPOSITORY} from '@jbr/state/shared';
+
 import {setCurrentDate} from "../date/date.actions";
+import {getWeatherForLocation} from "../weather/weather.actions";
 
-import {tap} from "rxjs";
-import {Router} from "@angular/router";
-
-/* TODO - CURRENTLY THIS IS NOT BEING USED - IT IS NOT REGISTERED IN PROVIDERS */
 
 @Injectable()
 export class AppEffects {
 
   readonly #actions$ = inject(Actions);
   readonly #location = inject(LOCATION_REPOSITORY);
-  readonly #date = inject(DATE_REPOSITORY);
-  readonly #router = inject(Router);
 
-  getWeatherForLocation = createEffect(
+  getWeatherForLocation$ = createEffect(
     () => this.#actions$.pipe(
-      ofType(
-        setActiveLocation,
-        setCurrentDate
-      ),
-      concatLatestFrom(() => [
-        this.#location.activeSummary$,
-        this.#date.current$
-      ]),
-      tap(([action, location, date]) => {
-        console.log(location);
-        if(!location || !location.lat || !location.long || !date) {
-          return;
-        }
-
-        this.#router.navigate(['weather'])
+      ofType(setCurrentDate),
+      map(action => action.current),
+      withLatestFrom(this.#location.activeSummary$),
+      filter((arg: [string, MapLocationSummary | null]): arg is [string, MapLocationSummary] => {
+        console.log(arg);
+        return !!arg[1];
+      }),
+      map(([date, location]) => {
+        return getWeatherForLocation({lat: location.lat, lng: location.long, validdatetime: date});
       })
     ),
-    {dispatch: false}
   )
 }
 

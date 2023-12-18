@@ -1,8 +1,8 @@
 import {Component, inject, Input} from '@angular/core';
 import {AsyncPipe} from "@angular/common";
 import {WeatherLocationData, WeatherResultsComponent} from "@jbr/shared";
-import {WEATHER_REPOSITORY} from "@jbr/state/shared";
-import {Observable} from "rxjs";
+import {LOCATION_REPOSITORY, DATE_REPOSITORY, WEATHER_REPOSITORY} from "@jbr/state/shared";
+import {combineLatest, Observable, of, switchMap} from "rxjs";
 import {DatePickerContainer} from "../../../date/containers/date-picker/date-picker.container";
 
 @Component({
@@ -14,10 +14,19 @@ import {DatePickerContainer} from "../../../date/containers/date-picker/date-pic
 })
 export class WeatherResultsContainer {
 
-  @Input() set latlng(value: string) {
-    this.weather$ = this.#repos.getLocationDataByKey(value);
-  }
+  readonly #location = inject(LOCATION_REPOSITORY);
+  readonly #date = inject(DATE_REPOSITORY);
+  readonly #weather = inject(WEATHER_REPOSITORY);
 
-  readonly #repos = inject(WEATHER_REPOSITORY);
-  weather$?: Observable<WeatherLocationData | null>;
+  readonly weather$ = combineLatest([
+    this.#location.activeSummary$,
+    this.#date.current$
+  ]).pipe(
+    switchMap(([location, date]) => {
+      if(!location) {
+        return of(null);
+      }
+      return this.#weather.getLocationDataByKey(`${location.lat}-${location.long}`, date);
+    })
+  );
 }
