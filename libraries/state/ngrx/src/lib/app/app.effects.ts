@@ -20,7 +20,6 @@ export class AppEffects {
       map(action => action.current),
       withLatestFrom(this.#location.activeSummary$),
       filter((arg: [string, MapLocationSummary | null]): arg is [string, MapLocationSummary] => {
-        console.log(arg);
         return !!arg[1];
       }),
       map(([date, location]) => {

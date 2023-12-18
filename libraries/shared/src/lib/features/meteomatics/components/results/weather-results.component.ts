@@ -1,13 +1,16 @@
 import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
 import {WeatherLocationData} from "../../models/meteomatics.models";
-import {NgForOf} from "@angular/common";
+import {NgForOf, NgIf} from "@angular/common";
+import {MatTableModule} from "@angular/material/table";
 
 
 @Component({
   selector: 'weather-results',
   standalone: true,
   imports: [
-    NgForOf
+    NgForOf,
+    MatTableModule,
+    NgIf
   ],
   templateUrl: './weather-results.component.html',
   styleUrls: ['./weather-results.component.css'],
@@ -15,4 +18,6 @@ import {NgForOf} from "@angular/common";
 })
 export class WeatherResultsComponent {
   @Input() locationData?: WeatherLocationData;
+
+  displayedColumns: string[] = ['label', 'value'];
 }
