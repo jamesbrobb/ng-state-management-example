@@ -24,7 +24,7 @@ export class WeatherStore {
 
   @Selector([WeatherStore.locations])
   static getLocationByKey(locations: WeatherLocationMap) {
-    return (key: string):WeatherResponseData[] | null => locations[key]
+    return (key: string): {[datetime: string]:WeatherResponseData[]} | null => locations[key]
   }
 
 
@@ -33,14 +33,28 @@ export class WeatherStore {
     return this.#service.get({
       validdatetime,
       location: `${lat},${long}`,
-      parameters: [WEATHER_PARAM.MSL_PRESSURE, WEATHER_PARAM.PRECIPITATION_24HR]
+      parameters: [
+        WEATHER_PARAM.WIND_SPEED,
+        WEATHER_PARAM.WIND_DIRECTION,
+        WEATHER_PARAM.WIND_GUSTS_24HR,
+        WEATHER_PARAM.TEMPERATURE_MIN,
+        WEATHER_PARAM.TEMPERATURE_MAX,
+        WEATHER_PARAM.PRECIPITATION_24HR,
+        WEATHER_PARAM.WEATHER_SYMBOL_24H,
+        WEATHER_PARAM.SUNRISE,
+        WEATHER_PARAM.SUNSET
+      ]
     }).pipe(
       tap(response => {
         const state = ctx.getState(),
           coord = response[0].coordinates[0],
+          location = `${coord.lat}-${coord.lon}`,
           locations = {
             ...state.locations,
-            [`${coord.lat}${coord.lon}`]: response
+            [location]: {
+              ...state.locations[location] || {},
+              [validdatetime]: response
+            }
           }
 
         ctx.patchState({

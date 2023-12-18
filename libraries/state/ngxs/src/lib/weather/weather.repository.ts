@@ -19,8 +19,9 @@ class NGXSWeatherRepository implements WeatherRepository {
       );
 
   readonly getLocationDataByKey =
-    (key: string) => this.getLocationByKey(key)
+    (key: string, datetime: string) => this.getLocationByKey(key)
       .pipe(
+        map(location => location?.[datetime]),
         ifNonNullElseNull(
           convertResponseDataToLocationData()
         )

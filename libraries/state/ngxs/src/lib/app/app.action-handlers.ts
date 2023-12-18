@@ -1,11 +1,10 @@
 import {Actions, ofActionSuccessful, Store} from "@ngxs/store";
 import {inject, Injectable} from "@angular/core";
-import {LOCATION_REPOSITORY, DATE_REPOSITORY} from '@jbr/state/shared';
-import {tap, withLatestFrom} from "rxjs";
+import {MapLocationSummary} from '@jbr/shared';
+import {LOCATION_REPOSITORY} from '@jbr/state/shared';
+import {filter, map, tap, withLatestFrom} from "rxjs";
 import {DateActions} from "../date/date.actions";
-import {LocationActions} from "../location/location.actions";
-import {Navigate} from "@ngxs/router-plugin";
-import {Router} from "@angular/router";
+import {WeatherActions} from "../weather/weather.actions";
 
 
 @Injectable({providedIn: "root"})
@@ -13,25 +12,18 @@ export class AppActionHandlers {
 
   readonly #store = inject(Store);
   readonly #actions = inject(Actions);
-  readonly #date = inject(DATE_REPOSITORY);
   readonly #location = inject(LOCATION_REPOSITORY);
-
-  readonly #router = inject(Router);
 
   constructor() {
     this.#actions.pipe(
-      ofActionSuccessful(DateActions.SetCurrentDate, LocationActions.SetActiveLocation),
-      withLatestFrom(
-        this.#location.activeSummary$,
-        this.#date.current$
-      ),
-      tap(([action, location, date]) => {
-        console.log(location);
-        if(!location || !location.lat || !location.long || !date) {
-          return;
-        }
-
-        this.#store.dispatch(new Navigate(['weather']));
+      ofActionSuccessful(DateActions.SetCurrentDate),
+      map(action => action.current),
+      withLatestFrom(this.#location.activeSummary$),
+      filter((arg: [string, MapLocationSummary | null]): arg is [string, MapLocationSummary] => {
+        return !!arg[1];
+      }),
+      tap(([date, location]) => {
+        this.#store.dispatch(new WeatherActions.GetForLocation(location.lat, location.long, date));
       })
     )
     .subscribe();
