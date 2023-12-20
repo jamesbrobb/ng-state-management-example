@@ -1,31 +1,65 @@
-# StateManagement
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.4.
+## Angular State Management solution comparison
 
-## Development server
+The project demonstrates the implementation of different state management solutions within a single Angular application.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+The following state management solutions are currently implemented:
+  - [x] [NgRx](https://ngrx.io/) - app [demo](https://ng-state-management.jamesrobb.work/ngrx/)
+  - [x] [NgXs](https://www.ngxs.io/) - app [demo](https://ng-state-management.jamesrobb.work/ngxs/)
+  - [x] [Elf](https://github.com/ngneat/elf/) (successor to Akita) - app [demo](https://ng-state-management.jamesrobb.work/elf/)
 
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
 ## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+The project consists of the following:
+  - a library (libraries/shared) containing feature and application logic
+  - a library (libraries/state) containing
+  - a single application (projects/location-weather) with a separate build configuration for each solution.
 
-## Serve build locally
+Each individual build can be created with the following command:
 
-cd to `index.html` and run `python3 -m http.server` - app will serve on `localhost:8000`
+`ng build location-weather --configuration <solution-name>-prod`
 
-## Running unit tests
+Where `<solution-name>-prod` is the listed within the projects `build` `configurations` settings in `angular.json`.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Each build configuration specifies the following file replacements:
+- `app.config.ts` - the application configuration
+- `app.providers.ts` - the application providers
+- `weather.providers.ts` - the weather feature providers
 
-## Running end-to-end tests
+```json
+{
+  "build": {
+    "configurations": {
+      "<solution-name>-prod": {
+        "outputPath": "dist/location-weather/<solution-name>",
+        "baseHref": "/<solution-name>/",
+        "outputHashing": "all",
+        "fileReplacements": [
+          {
+            "replace": "projects/location-weather/src/app/app.config.ts",
+            "with": "projects/location-weather/src/configurations/<solution-name>/app.config.ts"
+          },
+          {
+            "replace": "projects/location-weather/src/app/app.providers.ts",
+            "with": "projects/location-weather/src/configurations/<solution-name>/app.providers.ts"
+          },
+          {
+            "replace": "projects/location-weather/src/app/weather/weather.providers.ts",
+            "with": "projects/location-weather/src/configurations/<solution-name>/weather.providers.ts"
+          }
+        ]
+      }
+    }
+  }
+}
+```
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+## Location weather application
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+The application is decoupled from the specific state management solutions and implements the following:
+  - application boostrap uses files listed in `"fileReplacements"` to configure state solution specific providers and config
+  - routing
+  - route guards (for data management and deeplinking)
+  - containers for ui state access and updates
+  - State I/O occurs through interfaced Injection Tokens implementing a Repository/Facade pattern
