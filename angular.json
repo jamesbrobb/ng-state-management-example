@@ -444,8 +444,7 @@
                   "maximumError": "4kb"
                 }
               ],
-              "outputHashing": "all",
-              "baseHref": "/home/"
+              "outputHashing": "all"
             },
             "development": {
               "buildOptimizer": false,
