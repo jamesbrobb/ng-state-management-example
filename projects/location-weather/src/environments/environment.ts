@@ -4,14 +4,14 @@
 
 import {Environment} from '@jbr/shared';
 import {appConfig} from "../app/app.config";
-import {METEOMATICS_AUTH} from "../../../../libraries/shared/src/lib/features";
 
 
 export const environment: Environment = {
   production: false,
   config: appConfig,
   MAPQUEST_KEY: process.env['MAPQUEST_KEY'] || 'MAPQUEST_KEY',
-  METEOMATICS_AUTH:  process.env['METEOMATICS_AUTH'] || 'METEOMATICS_AUTH'
+  METEOMATICS_AUTH:  process.env['METEOMATICS_AUTH'] || 'METEOMATICS_AUTH',
+  WEATHER_URI: process.env['WEATHER_URI'] || 'WEATHER_URI',
 };
 
 /*

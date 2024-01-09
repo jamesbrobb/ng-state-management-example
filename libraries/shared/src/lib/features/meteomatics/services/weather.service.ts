@@ -3,9 +3,6 @@ import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 import {iif, map, Observable, of, Subject, switchMap} from "rxjs";
 
 
-export const API = 'https://api.meteomatics.com';
-export const LOGIN_URI = 'https://login.meteomatics.com/api/v1/token';
-
 export enum WEATHER_PARAM {
   WIND_SPEED='wind_speed_10m:ms',
   WIND_DIRECTION='wind_dir_10m:d',
@@ -55,54 +52,26 @@ export type WeatherResponseCoordData = {
   }]
 }
 
+
+export const WEATHER_URI = new InjectionToken<string>('WEATHER_URI')
 export const METEOMATICS_AUTH = new InjectionToken<string>('METEOMATICS_AUTH')
 
 @Injectable({providedIn: 'root'})
 export class WeatherService {
 
   #http = inject(HttpClient);
-  #auth_token = inject(METEOMATICS_AUTH);
-
-  #accessToken?: string;
-
-  #token = new Subject();
-
+  #uri = inject(WEATHER_URI);
 
   get(params: WeatherRequestParams): Observable<WeatherResponseData[]> {
 
-    return this._auth()
-      .pipe(switchMap((token) => {
-        const uri = [
-          API,
-          params.validdatetime,
-          params.parameters.join(','),
-          params.location,
-          'json'
-        ].join('/');
+    const uri = [
+      this.#uri,
+      params.validdatetime,
+      params.parameters.join(','),
+      params.location,
+    ].join('/');
 
-        return this.#http.get<WeatherResponse>(uri, {params: new HttpParams({fromString: `access_token=${token}`})})
-          .pipe(map(response => response.data));
-      })
-    )
-  }
-
-  private _auth(): Observable<string> {
-
-    return iif(
-      () => !this.#accessToken,
-      of('').pipe(switchMap(() => {
-        const headers = new HttpHeaders({
-          Authorization: 'Basic ' +btoa(this.#auth_token)
-        });
-        return this.#http.get<{
-          access_token: string,
-          token_type: string
-        }>(LOGIN_URI, {headers})
-          .pipe(
-            map(response => this.#accessToken = response.access_token)
-          );
-      })),
-      of(this.#accessToken as string)
-    );
+    return this.#http.get<WeatherResponse>(uri)
+      .pipe(map(response => response.data));
   }
 }

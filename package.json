@@ -1,6 +1,6 @@
 {
   "name": "state-management",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "scripts": {
     "start-elf": "ng serve location-weather --configuration elf-dev --port=4201",
     "start-ngrx": "ng serve location-weather --configuration ngrx-dev --port=4202",

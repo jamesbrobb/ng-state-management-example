@@ -6,7 +6,7 @@ The project demonstrates the implementation of different state management soluti
 The following state management solutions are currently implemented:
   - [x] [NgRx](https://ngrx.io/) - app [demo](https://ng-state-management.jamesrobb.work/ngrx/)
   - [x] [NgXs](https://www.ngxs.io/) - app [demo](https://ng-state-management.jamesrobb.work/ngxs/)
-  - [x] [Elf](https://github.com/ngneat/elf/) (successor to Akita) - app [demo](https://ng-state-management.jamesrobb.work/elf/)
+  - [x] [Elf](https://github.com/ngneat/elf/)  - app [demo](https://ng-state-management.jamesrobb.work/elf/) - (successor to [Akita](https://github.com/salesforce/akita))
 
 
 ## Build
@@ -18,7 +18,9 @@ The project consists of the following:
 
 Each individual build can be created with the following command:
 
-`ng build location-weather --configuration <solution-name>-prod`
+```
+ng build location-weather --configuration <solution-name>-prod
+```
 
 Where `<solution-name>-prod` is the listed within the projects `build` `configurations` settings in `angular.json`.
 

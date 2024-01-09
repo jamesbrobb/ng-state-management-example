@@ -3,12 +3,13 @@ import {bootstrapApplication} from "@angular/platform-browser";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {HttpClientModule} from "@angular/common/http";
 import {provideRouter, withDebugTracing} from "@angular/router";
-import {APP_CONFIG, MAPQUEST_KEY, METEOMATICS_AUTH} from "@jbr/shared";
+import {APP_CONFIG, MAPQUEST_KEY, METEOMATICS_AUTH, WEATHER_URI} from "@jbr/shared";
 
 import {environment} from "./environments/environment";
 import {AppComponent} from "./app/app.component";
 import {getAppRoutes} from "./app/app.routes";
 import {getProviders} from "./app/app.providers";
+
 
 const config = environment.config;
 
@@ -37,6 +38,10 @@ bootstrapApplication(AppComponent, {
     {
       provide: METEOMATICS_AUTH,
       useValue: environment.METEOMATICS_AUTH
+    },
+    {
+      provide: WEATHER_URI,
+      useValue: environment.WEATHER_URI
     },
     provideRouter(
       getAppRoutes(config.type as string),
