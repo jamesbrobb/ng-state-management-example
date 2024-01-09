@@ -1,12 +1,12 @@
 import {inject} from "@angular/core";
 import {Store} from "@ngxs/store";
-import {DateRepository} from "@jbr/state/shared";
+import {DateFacade} from "@jbr/state/shared";
 import {Observable} from "rxjs";
 import {DateActions} from "./date.actions";
 import {DateStore} from "./date.store";
 
 
-class NGXSDateRepository implements DateRepository {
+class NGXSDateFacade implements DateFacade {
 
   readonly #store = inject(Store);
 
@@ -19,4 +19,4 @@ class NGXSDateRepository implements DateRepository {
   }
 }
 
-export const dateRepositoryFactory = () => new NGXSDateRepository()
+export const dateFacadeFactory = () => new NGXSDateFacade()

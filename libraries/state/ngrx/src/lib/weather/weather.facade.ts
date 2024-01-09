@@ -3,11 +3,11 @@ import {Store} from "@ngrx/store";
 import {getWeatherForLocation} from "./weather.actions";
 import {weatherFeature} from "./weather.reducer";
 import {ifNonNullElseNull, convertResponseDataToLocationData} from "@jbr/shared";
-import {WeatherRepository} from '@jbr/state/shared';
+import {WeatherFacade} from '@jbr/state/shared';
 import {map} from "rxjs";
 
 
-class NGRXWeatherRepository implements WeatherRepository {
+class NGRXWeatherFacade implements WeatherFacade {
 
   readonly #store = inject(Store);
 
@@ -26,4 +26,4 @@ class NGRXWeatherRepository implements WeatherRepository {
   }
 }
 
-export const weatherRepositoryFactory = () => new NGRXWeatherRepository()
+export const weatherFacadeFactory = () => new NGRXWeatherFacade()

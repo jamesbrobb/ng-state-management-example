@@ -1,11 +1,11 @@
 import {inject, Injectable} from "@angular/core";
 import {Store} from "@ngrx/store";
-import {DateRepository} from '@jbr/state/shared';
+import {DateFacade} from '@jbr/state/shared';
 import {setCurrentDate} from "./date.actions";
 import {dateFeature} from "./date.reducer";
 
 
-class NGRXDateRepository implements DateRepository {
+class NGRXDateFacade implements DateFacade {
   readonly #store = inject(Store);
 
   readonly current$ = this.#store.select(dateFeature.selectCurrent);
@@ -17,4 +17,4 @@ class NGRXDateRepository implements DateRepository {
   }
 }
 
-export const dateRepositoryFactory = () => new NGRXDateRepository();
+export const dateFacadeFactory = () => new NGRXDateFacade();

@@ -2,7 +2,7 @@ import {filter, map, withLatestFrom} from "rxjs";
 import {inject, Injectable} from "@angular/core";
 import {Actions, createEffect, ofType} from "@ngrx/effects";
 import {MapLocationSummary} from '@jbr/shared';
-import {LOCATION_REPOSITORY} from '@jbr/state/shared';
+import {LOCATION_FACADE} from '@jbr/state/shared';
 
 import {setCurrentDate} from "../date/date.actions";
 import {getWeatherForLocation} from "../weather/weather.actions";
@@ -12,7 +12,7 @@ import {getWeatherForLocation} from "../weather/weather.actions";
 export class AppEffects {
 
   readonly #actions$ = inject(Actions);
-  readonly #location = inject(LOCATION_REPOSITORY);
+  readonly #location = inject(LOCATION_FACADE);
 
   getWeatherForLocation$ = createEffect(
     () => this.#actions$.pipe(

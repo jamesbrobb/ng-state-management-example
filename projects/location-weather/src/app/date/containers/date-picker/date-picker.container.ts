@@ -1,7 +1,7 @@
 import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
 import {AsyncPipe} from "@angular/common";
 import {DatePickerComponent} from "@jbr/shared";
-import {DATE_REPOSITORY} from "@jbr/state/shared";
+import {DATE_FACADE} from "@jbr/state/shared";
 
 @Component({
   selector: 'date-picker-container',
@@ -15,8 +15,8 @@ import {DATE_REPOSITORY} from "@jbr/state/shared";
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DatePickerContainer {
-  readonly repos = inject(DATE_REPOSITORY);
+  readonly facade = inject(DATE_FACADE);
   onDateChange(value: string): void {
-    this.repos.setCurrent(new Date(value).toISOString());
+    this.facade.setCurrent(new Date(value).toISOString());
   }
 }

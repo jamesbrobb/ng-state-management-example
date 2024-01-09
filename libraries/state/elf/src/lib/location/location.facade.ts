@@ -14,11 +14,11 @@ import {
   convertToLocationSummary,
   doesLocationMatchPath
 } from "@jbr/shared";
-import {LocationRepository, initialLocationState} from '@jbr/state/shared';
+import {LocationFacade, initialLocationState} from '@jbr/state/shared';
 import {map, switchMap, tap} from "rxjs";
 
 
-class ElfLocationRepository implements LocationRepository {
+class ElfLocationFacade implements LocationFacade {
 
   readonly #service = inject(MapquestService);
 
@@ -68,4 +68,4 @@ class ElfLocationRepository implements LocationRepository {
 }
 
 
-export const locationRepositoryFactory = () => new ElfLocationRepository();
+export const locationFacadeFactory = () => new ElfLocationFacade();

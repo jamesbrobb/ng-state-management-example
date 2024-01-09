@@ -4,13 +4,13 @@ import {NgxsRouterPluginModule} from "@ngxs/router-plugin";
 import {NgxsReduxDevtoolsPluginModule} from "@ngxs/devtools-plugin";
 
 import {GetProvidersFn} from "@jbr/shared";
-import {DATE_REPOSITORY, LOCATION_REPOSITORY, APP_REPOSITORY} from '@jbr/state/shared';
+import {DATE_FACADE, LOCATION_FACADE, APP_FACADE} from '@jbr/state/shared';
 
 import {DateStore} from "../date/date.store";
 import {LocationStore} from "../location/location.store";
-import {dateRepositoryFactory} from "../date/date.repository";
-import {locationRepositoryFactory} from "../location/location.repository";
-import {appRepositoryFactory} from "./app.repository";
+import {dateFacadeFactory} from "../date/date.facade";
+import {locationFacadeFactory} from "../location/location.facade";
+import {appFacadeFactory} from "./app.facade";
 
 
 export const getProviders: GetProvidersFn = () => [
@@ -29,15 +29,15 @@ export const getProviders: GetProvidersFn = () => [
     NgxsReduxDevtoolsPluginModule.forRoot()
   ),
   {
-    provide: APP_REPOSITORY,
-    useFactory: appRepositoryFactory
+    provide: APP_FACADE,
+    useFactory: appFacadeFactory
   },
   {
-    provide: DATE_REPOSITORY,
-    useFactory: dateRepositoryFactory
+    provide: DATE_FACADE,
+    useFactory: dateFacadeFactory
   },
   {
-    provide: LOCATION_REPOSITORY,
-    useFactory: locationRepositoryFactory
+    provide: LOCATION_FACADE,
+    useFactory: locationFacadeFactory
   }
 ]

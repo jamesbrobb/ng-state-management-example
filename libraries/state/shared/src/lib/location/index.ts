@@ -1,2 +1,2 @@
 export {initialLocationState, LocationState, LocationEntities} from "./location.state";
-export {LOCATION_REPOSITORY, LocationRepository} from "./location.repository";
+export {LOCATION_FACADE, LocationFacade} from "./location.facade";

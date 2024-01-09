@@ -1,7 +1,7 @@
 import {GetProvidersFn} from "@jbr/shared";
-import {WEATHER_REPOSITORY} from '@jbr/state/shared';
+import {WEATHER_FACADE} from '@jbr/state/shared';
 
-import {weatherRepositoryFactory} from "./weather.repository";
+import {weatherFacadeFactory} from "./weather.facade";
 import {importProvidersFrom} from "@angular/core";
 import {NgxsModule} from "@ngxs/store";
 import {WeatherStore} from "./weather.store";
@@ -14,7 +14,7 @@ export const getProviders: GetProvidersFn = () => [
     ])
   ),
   {
-    provide: WEATHER_REPOSITORY,
-    useFactory: weatherRepositoryFactory
+    provide: WEATHER_FACADE,
+    useFactory: weatherFacadeFactory
   }
 ]

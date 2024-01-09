@@ -1,11 +1,11 @@
 import {CanActivateFn} from "@angular/router";
 import {inject} from "@angular/core";
-import {LOCATION_REPOSITORY} from "@jbr/state/shared";
+import {LOCATION_FACADE} from "@jbr/state/shared";
 import {map, tap, combineLatest, filter, withLatestFrom} from "rxjs";
 
 
 export const hasActiveLocation: CanActivateFn = (route, state) => {
-  const location = inject(LOCATION_REPOSITORY);
+  const location = inject(LOCATION_FACADE);
   return location.active$.pipe(
     tap(arg => console.log('hasActiveLocation', arg)),
     map(arg => !!arg)
@@ -13,19 +13,19 @@ export const hasActiveLocation: CanActivateFn = (route, state) => {
 }
 
 export const setActiveLocation: CanActivateFn = (route, state) => {
-  const locationRepos = inject(LOCATION_REPOSITORY);
+  const locationFacade = inject(LOCATION_FACADE);
   const slugs = route.url.map((frag) => frag.path);
 
   return combineLatest([
-    locationRepos.active$,
-    locationRepos.options$
+    locationFacade.active$,
+    locationFacade.options$
   ]).pipe(
-    withLatestFrom(locationRepos.getLocationBySlug(slugs)),
+    withLatestFrom(locationFacade.getLocationBySlug(slugs)),
     map(([[active, locations], location], index) => {
 
       /*
         TODO - could all the following logic be shifted into a method on
-         the location repos which would return an observable of true/false
+         the location facade which would return an observable of true/false
          depending on the outcome? OR an operator?
        */
 
@@ -39,7 +39,7 @@ export const setActiveLocation: CanActivateFn = (route, state) => {
            that we're unaware of... that said we can't go any further
            until the guard completes
          */
-        locationRepos.setActiveLocation(location);
+        locationFacade.setActiveLocation(location);
       }
 
       if(!location && index === 0) {
@@ -48,7 +48,7 @@ export const setActiveLocation: CanActivateFn = (route, state) => {
           .split('-')
           .filter(arg => !numCheck.test(arg))
           .join(' ');
-        locationRepos.search(q);
+        locationFacade.search(q);
       }
 
       if(!location && index > 0) {

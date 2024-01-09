@@ -1,12 +1,12 @@
 import {ActivatedRouteSnapshot, CanActivateFn, RouterStateSnapshot} from "@angular/router";
 import {inject} from "@angular/core";
 import {combineLatest, map, tap} from "rxjs";
-import {LOCATION_REPOSITORY, DATE_REPOSITORY, WEATHER_REPOSITORY} from "@jbr/state/shared";
+import {LOCATION_FACADE, DATE_FACADE, WEATHER_FACADE} from "@jbr/state/shared";
 
 
 export const weatherGuard: CanActivateFn = (route, state) => {
-  const location = inject(LOCATION_REPOSITORY);
-  const date = inject(DATE_REPOSITORY);
+  const location = inject(LOCATION_FACADE);
+  const date = inject(DATE_FACADE);
 
   return combineLatest(
     location.activeSummary$,
@@ -17,12 +17,12 @@ export const weatherGuard: CanActivateFn = (route, state) => {
 }
 
 export const getWeatherForActiveLocation: CanActivateFn = (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
-  const locationRepos = inject(LOCATION_REPOSITORY);
-  const weather = inject(WEATHER_REPOSITORY);
-  const date = inject(DATE_REPOSITORY);
+  const locationFacade = inject(LOCATION_FACADE);
+  const weather = inject(WEATHER_FACADE);
+  const date = inject(DATE_FACADE);
 
   return combineLatest([
-    locationRepos.activeSummary$,
+    locationFacade.activeSummary$,
     date.current$
   ]).pipe(
     tap(([location, date]) => {

@@ -4,14 +4,14 @@ import {provideEffects} from "@ngrx/effects";
 import {provideStoreDevtools} from "@ngrx/store-devtools";
 import {provideRouterStore, routerReducer} from "@ngrx/router-store";
 import {GetProvidersFn} from "@jbr/shared";
-import {DATE_REPOSITORY, LOCATION_REPOSITORY, APP_REPOSITORY} from '@jbr/state/shared';
+import {DATE_FACADE, LOCATION_FACADE, APP_FACADE} from '@jbr/state/shared';
 
 import {dateFeature} from "../date/date.reducer";
 import {locationFeature} from "../location/location.reducers";
 
-import {dateRepositoryFactory} from "../date/date.repository";
-import {locationRepositoryFactory} from "../location/location.repository";
-import {appRepositoryFactory} from "./app.repository";
+import {dateFacadeFactory} from "../date/date.facade";
+import {locationFacadeFactory} from "../location/location.facade";
+import {appFacadeFactory} from "./app.facade";
 import {LocationEffects} from "../location/location.effects";
 import {AppEffects} from "./app.effects";
 
@@ -29,15 +29,15 @@ export const getProviders: GetProvidersFn = () => [
     logOnly: !isDevMode(),
   }),
   {
-    provide: DATE_REPOSITORY,
-    useFactory: dateRepositoryFactory
+    provide: DATE_FACADE,
+    useFactory: dateFacadeFactory
   },
   {
-    provide: LOCATION_REPOSITORY,
-    useFactory: locationRepositoryFactory
+    provide: LOCATION_FACADE,
+    useFactory: locationFacadeFactory
   },
   {
-    provide: APP_REPOSITORY,
-    useFactory: appRepositoryFactory
+    provide: APP_FACADE,
+    useFactory: appFacadeFactory
   }
 ]

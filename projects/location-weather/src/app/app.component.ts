@@ -2,7 +2,7 @@ import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
 import {AsyncPipe, NgIf} from "@angular/common";
 import {RouterOutlet} from "@angular/router";
 import {APP_CONFIG} from "@jbr/shared";
-import {APP_REPOSITORY} from "@jbr/state/shared";
+import {APP_FACADE} from "@jbr/state/shared";
 import {SearchInputContainer} from "./location/containers/search-input/search-input.container";
 import {MapquestMapContainer} from "./location/containers/map/map/map.container";
 import {DatePickerContainer} from "./date/containers/date-picker/date-picker.container";
@@ -24,6 +24,6 @@ import {DatePickerContainer} from "./date/containers/date-picker/date-picker.con
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppComponent {
-  readonly #repos = inject(APP_REPOSITORY);
+  readonly #facade = inject(APP_FACADE);
   readonly appConfig = inject(APP_CONFIG);
 }

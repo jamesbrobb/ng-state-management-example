@@ -1,2 +1,2 @@
 export {DateState, initialDateState} from "./date.state";
-export {DateRepository, DATE_REPOSITORY} from "./date.repository";
+export {DateFacade, DATE_FACADE} from "./date.facade";

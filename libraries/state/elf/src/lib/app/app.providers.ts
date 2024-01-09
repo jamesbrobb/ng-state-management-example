@@ -1,27 +1,27 @@
 import {GetProvidersFn} from "@jbr/shared";
-import {DATE_REPOSITORY, LOCATION_REPOSITORY, APP_REPOSITORY, WEATHER_REPOSITORY} from "@jbr/state/shared";
+import {DATE_FACADE, LOCATION_FACADE, APP_FACADE, WEATHER_FACADE} from "@jbr/state/shared";
 
-import {dateRepositoryFactory} from "../date/date.repository";
-import {locationRepositoryFactory} from "../location/location.repository";
-import {appRepositoryFactory} from "./app.repository";
-import {weatherRepositoryFactory} from "../weather/weather.repository";
+import {dateFacadeFactory} from "../date/date.facade";
+import {locationFacadeFactory} from "../location/location.facade";
+import {appFacadeFactory} from "./app.facade";
+import {weatherFacadeFactory} from "../weather/weather.facade";
 
 
 export const getProviders: GetProvidersFn = () => [
   {
-    provide: APP_REPOSITORY,
-    useFactory: appRepositoryFactory
+    provide: APP_FACADE,
+    useFactory: appFacadeFactory
   },
   {
-    provide: DATE_REPOSITORY,
-    useFactory: dateRepositoryFactory
+    provide: DATE_FACADE,
+    useFactory: dateFacadeFactory
   },
   {
-    provide: LOCATION_REPOSITORY,
-    useFactory: locationRepositoryFactory
+    provide: LOCATION_FACADE,
+    useFactory: locationFacadeFactory
   },
   {
-    provide: WEATHER_REPOSITORY,
-    useFactory: weatherRepositoryFactory
+    provide: WEATHER_FACADE,
+    useFactory: weatherFacadeFactory
   }
 ]

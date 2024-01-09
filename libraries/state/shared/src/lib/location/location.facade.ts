@@ -3,7 +3,7 @@ import {Observable} from "rxjs";
 import {MapLocation, MapLocationSummary} from "@jbr/shared";
 
 
-export interface LocationRepository {
+export interface LocationFacade {
   readonly searchTerm$: Observable<string>;
   readonly options$: Observable<MapLocation[]>;
   readonly active$: Observable<MapLocation | undefined>;
@@ -13,4 +13,4 @@ export interface LocationRepository {
   setActiveLocation(location: MapLocation): void;
 }
 
-export const LOCATION_REPOSITORY = new InjectionToken<LocationRepository>('LocationRepository')
+export const LOCATION_FACADE = new InjectionToken<LocationFacade>('LocationFacade')

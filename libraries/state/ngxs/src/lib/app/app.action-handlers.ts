@@ -1,7 +1,7 @@
 import {Actions, ofActionSuccessful, Store} from "@ngxs/store";
 import {inject, Injectable} from "@angular/core";
 import {MapLocationSummary} from '@jbr/shared';
-import {LOCATION_REPOSITORY} from '@jbr/state/shared';
+import {LOCATION_FACADE} from '@jbr/state/shared';
 import {filter, map, tap, withLatestFrom} from "rxjs";
 import {DateActions} from "../date/date.actions";
 import {WeatherActions} from "../weather/weather.actions";
@@ -12,7 +12,7 @@ export class AppActionHandlers {
 
   readonly #store = inject(Store);
   readonly #actions = inject(Actions);
-  readonly #location = inject(LOCATION_REPOSITORY);
+  readonly #location = inject(LOCATION_FACADE);
 
   constructor() {
     this.#actions.pipe(

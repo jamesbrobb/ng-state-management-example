@@ -1,13 +1,13 @@
 import {inject} from "@angular/core";
 import {ifNonNullElseNull, convertResponseDataToLocationData} from "@jbr/shared";
-import {WeatherRepository, WeatherLocationMap} from '@jbr/state/shared';
+import {WeatherFacade, WeatherLocationMap} from '@jbr/state/shared';
 import {Store} from "@ngxs/store";
 import {map, Observable} from "rxjs";
 import {WeatherStore} from "./weather.store";
 import {WeatherActions} from "./weather.actions";
 
 
-class NGXSWeatherRepository implements WeatherRepository {
+class NGXSWeatherFacade implements WeatherFacade {
 
   readonly #store = inject(Store);
 
@@ -32,4 +32,4 @@ class NGXSWeatherRepository implements WeatherRepository {
   }
 }
 
-export const weatherRepositoryFactory = () => new NGXSWeatherRepository();
+export const weatherFacadeFactory = () => new NGXSWeatherFacade();

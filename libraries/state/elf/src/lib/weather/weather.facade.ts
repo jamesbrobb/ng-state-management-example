@@ -10,10 +10,10 @@ import {
   convertResponseDataToLocationData
 } from "@jbr/shared";
 
-import {initialWeatherState, WeatherState, WeatherRepository, WeatherLocationMap} from "@jbr/state/shared";
+import {initialWeatherState, WeatherState, WeatherFacade, WeatherLocationMap} from "@jbr/state/shared";
 
 
-class ElfWeatherRepository implements WeatherRepository {
+class ElfWeatherFacade implements WeatherFacade {
 
   #store = createStore(
     { name: 'weather' },
@@ -72,4 +72,4 @@ class ElfWeatherRepository implements WeatherRepository {
   }
 }
 
-export const weatherRepositoryFactory = () => new ElfWeatherRepository();
+export const weatherFacadeFactory = () => new ElfWeatherFacade();

@@ -1,5 +1,5 @@
 import {createStore, select, withProps} from "@ngneat/elf";
-import {DateState, initialDateState, DateRepository} from "@jbr/state/shared";
+import {DateState, initialDateState, DateFacade} from "@jbr/state/shared";
 
 
 const store = createStore(
@@ -8,7 +8,7 @@ const store = createStore(
 )
 
 
-class ElfDateRepository implements DateRepository {
+class ElfDateFacade implements DateFacade {
 
   readonly current$ = store.pipe(select((state) => state.current));
   readonly min$ = store.pipe(select((state) => state.min));
@@ -34,4 +34,4 @@ class ElfDateRepository implements DateRepository {
   }
 }
 
-export const dateRepositoryFactory = () => new ElfDateRepository();
+export const dateFacadeFactory = () => new ElfDateFacade();

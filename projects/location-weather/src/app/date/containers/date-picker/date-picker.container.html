@@ -1,5 +1,5 @@
-<date-picker [current]="repos.current$ | async"
-             [min]="repos.min$ | async"
-             [max]="repos.max$ | async"
+<date-picker [current]="facade.current$ | async"
+             [min]="facade.min$ | async"
+             [max]="facade.max$ | async"
              (dateChange)="onDateChange($event)">
 </date-picker>

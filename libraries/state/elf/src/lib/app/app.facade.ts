@@ -1,14 +1,14 @@
 import {inject} from "@angular/core";
 import {MapLocationSummary} from "@jbr/shared";
-import {AppRepository, DATE_REPOSITORY, LOCATION_REPOSITORY, WEATHER_REPOSITORY} from "@jbr/state/shared";
+import {AppFacade, DATE_FACADE, LOCATION_FACADE, WEATHER_FACADE} from "@jbr/state/shared";
 import {filter, tap, withLatestFrom} from "rxjs";
 
 
-class ElfAppRepository implements AppRepository {
+class ElfAppFacade implements AppFacade {
 
-  readonly #location = inject(LOCATION_REPOSITORY);
-  readonly #date = inject(DATE_REPOSITORY);
-  readonly #weather = inject(WEATHER_REPOSITORY);
+  readonly #location = inject(LOCATION_FACADE);
+  readonly #date = inject(DATE_FACADE);
+  readonly #weather = inject(WEATHER_FACADE);
 
   constructor() {
 
@@ -25,4 +25,4 @@ class ElfAppRepository implements AppRepository {
 
 }
 
-export const appRepositoryFactory = () => new ElfAppRepository();
+export const appFacadeFactory = () => new ElfAppFacade();

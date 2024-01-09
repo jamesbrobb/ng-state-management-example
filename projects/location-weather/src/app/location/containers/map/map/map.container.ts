@@ -1,7 +1,7 @@
 import {Component, inject} from '@angular/core';
 import {AsyncPipe} from "@angular/common";
 import {MapComponent} from "@jbr/shared";
-import {LOCATION_REPOSITORY} from "@jbr/state/shared";
+import {LOCATION_FACADE} from "@jbr/state/shared";
 
 @Component({
   selector: 'map-container',
@@ -11,5 +11,5 @@ import {LOCATION_REPOSITORY} from "@jbr/state/shared";
   styleUrls: ['./map.container.scss']
 })
 export class MapquestMapContainer {
-  readonly location = inject(LOCATION_REPOSITORY);
+  readonly location = inject(LOCATION_FACADE);
 }

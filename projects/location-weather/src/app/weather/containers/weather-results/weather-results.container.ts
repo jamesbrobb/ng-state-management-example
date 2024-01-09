@@ -1,8 +1,8 @@
 import {Component, inject, Input} from '@angular/core';
 import {AsyncPipe} from "@angular/common";
-import {WeatherLocationData, WeatherResultsComponent} from "@jbr/shared";
-import {LOCATION_REPOSITORY, DATE_REPOSITORY, WEATHER_REPOSITORY} from "@jbr/state/shared";
-import {combineLatest, Observable, of, switchMap} from "rxjs";
+import {WeatherResultsComponent} from "@jbr/shared";
+import {LOCATION_FACADE, DATE_FACADE, WEATHER_FACADE} from "@jbr/state/shared";
+import {combineLatest, of, switchMap} from "rxjs";
 import {DatePickerContainer} from "../../../date/containers/date-picker/date-picker.container";
 import {MatDividerModule} from "@angular/material/divider";
 
@@ -15,9 +15,9 @@ import {MatDividerModule} from "@angular/material/divider";
 })
 export class WeatherResultsContainer {
 
-  readonly #location = inject(LOCATION_REPOSITORY);
-  readonly #date = inject(DATE_REPOSITORY);
-  readonly #weather = inject(WEATHER_REPOSITORY);
+  readonly #location = inject(LOCATION_FACADE);
+  readonly #date = inject(DATE_FACADE);
+  readonly #weather = inject(WEATHER_FACADE);
 
   readonly weather$ = combineLatest([
     this.#location.activeSummary$,

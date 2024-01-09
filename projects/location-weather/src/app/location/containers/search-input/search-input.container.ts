@@ -1,7 +1,7 @@
 import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
 import {Router} from "@angular/router";
 import {SearchInputComponent, MapLocation, getUrlFragsForLocation} from "@jbr/shared";
-import {LOCATION_REPOSITORY} from "@jbr/state/shared";
+import {LOCATION_FACADE} from "@jbr/state/shared";
 import {AsyncPipe} from "@angular/common";
 
 
@@ -14,11 +14,11 @@ import {AsyncPipe} from "@angular/common";
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SearchInputContainer {
-  readonly #repos = inject(LOCATION_REPOSITORY);
+  readonly #facade = inject(LOCATION_FACADE);
   readonly #router = inject(Router);
 
-  readonly options$ = this.#repos.options$;
-  readonly active$ = this.#repos.active$;
+  readonly options$ = this.#facade.options$;
+  readonly active$ = this.#facade.active$;
 
   onInputChange(arg: string): void {
 
@@ -26,7 +26,7 @@ export class SearchInputContainer {
       this.#router.navigate(['']);
     }
 
-    this.#repos.search(arg);
+    this.#facade.search(arg);
   }
 
   onSelectLocation(location: MapLocation): void {
