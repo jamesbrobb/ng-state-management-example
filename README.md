@@ -1,5 +1,5 @@
 
-## Angular State Management solution comparison
+# Angular State Management solution comparison
 
 The project demonstrates the implementation of different state management solutions within a single Angular application.
 

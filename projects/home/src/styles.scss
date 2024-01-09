@@ -1,0 +1,39 @@
+@use "normalize.css";
+@use '@angular/material' as mat;
+
+$jbr-primary: mat.define-palette(mat.$teal-palette, 500, 100, 900, 100);
+$jbr-accent: mat.define-palette(mat.$amber-palette, 500, 100, 900, 100);
+$jbr-warn: mat.define-palette(mat.$red-palette, 500, 100, 900, 100);
+
+$jbr-typography: mat.define-typography-config();
+
+$jbr-theme: mat.define-light-theme((
+  color: (
+    primary: $jbr-primary,
+    accent: $jbr-accent,
+    warn: $jbr-warn,
+  ),
+  typography: $jbr-typography
+));
+
+
+$jbr-dark-primary: mat.define-palette(mat.$amber-palette, 500, 100, 900);
+$jbr-dark-accent: mat.define-palette(mat.$amber-palette, 500, 100, 900);
+$jbr-dark-warn: mat.define-palette(mat.$red-palette, 500, 100, 900);
+
+$jbr-dark-theme: mat.define-dark-theme((
+  color: (
+    primary: $jbr-dark-primary,
+    accent: $jbr-dark-accent,
+    warn: $jbr-dark-warn,
+  ),
+  typography: $jbr-typography
+));
+
+@include mat.core();
+@include mat.typography-hierarchy($jbr-typography);
+@include mat.core-theme($jbr-theme);
+
+@media (prefers-color-scheme: dark) {
+  @include mat.core-color($jbr-dark-theme);
+}

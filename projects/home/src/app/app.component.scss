@@ -1,0 +1,79 @@
+:host {
+  display: block;
+  margin: 50px;
+
+  --link-color: #905;
+  --divider-color: #E9E9E9;
+  --code-background-color: f5f2f0;
+
+  markdown {
+    display: block;
+
+    ::ng-deep {
+
+      hr {
+        margin: 30px 0;
+        height: 0;
+        border: 0;
+        //border-top: 1px solid  var(--divider-color);
+      }
+
+      h1, h2, h3, h4, code {
+        //color: #E9E9E9;
+      }
+
+      code {
+        font-weight: normal;
+      }
+
+      p + h2,
+      pre + h2 {
+        margin-top: 50px;
+      }
+
+      p:first-child(code) {
+        background-color: var(--code-background-color);
+      }
+
+      a {
+        //color: var(--link-color);
+        text-decoration: none;
+
+        > code {
+          //color: var(--link-color);
+        }
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+
+      li {
+        margin-bottom: 10px;
+      }
+
+      blockquote {
+        margin: 30px 0;
+        padding: 10px 20px;
+        border-left: 5px solid var(--divider-color);
+        background-color: var(--code-background-color);
+      }
+
+      table {
+        border-collapse: collapse;
+        border-spacing: 0;
+        width: 100%;
+        margin: 30px 0;
+
+        th, td {
+          text-align: left;
+          padding: 8px;
+        }
+
+        tr:nth-child(even) {
+          background-color: var(--code-background-color);
+        }
+      }
+    }
+  }
+}
