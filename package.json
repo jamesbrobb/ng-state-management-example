@@ -7,6 +7,8 @@
     "start-ngrx": "ng serve location-weather --configuration ngrx-dev --port=4202",
     "start-ngxs": "ng serve location-weather --configuration ngxs-dev --port=4203",
     "build-libs": "ng build shared && ng build shared-state && ng build elf && ng build ngrx && ng build ngxs",
+    "build-shared-lib": "ng build shared",
+    "build-shared-state-lib": "ng build shared && ng build shared-state",
     "build-elf-lib": "ng build shared && ng build shared-state && ng build elf",
     "build-ngrx-lib": "ng build shared && ng build shared-state && ng build ngrx",
     "build-ngxs-lib": "ng build shared && ng build shared-state && ng build ngxs",

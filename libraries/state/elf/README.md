@@ -1,24 +1,9 @@
-# Elf
+## Elf
 
-This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.0.0-rc.0.
+Contains concrete Elf specific app config, app/feature providers, state and facade implementation.
 
-## Code scaffolding
-
-Run `ng generate component component-name --project elf` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project elf`.
-> Note: Don't forget to add `--project elf` or else it will be added to the default project in your `angular.json` file. 
+[Elf](https://github.com/ngneat/elf/)  - app [demo](https://ng-state-management.jamesrobb.work/elf/) - (successor to [Akita](https://github.com/salesforce/akita))
 
 ## Build
 
-Run `ng build elf` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Publishing
-
-After building your library with `ng build elf`, go to the dist folder `cd dist/elf` and run `npm publish`.
-
-## Running unit tests
-
-Run `ng test elf` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+`npm run build-elf-lib`

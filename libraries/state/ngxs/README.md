@@ -1,24 +1,9 @@
-# Ngxs
+## NGXS
 
-This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.0.0-rc.0.
+Contains concrete NGXS specific app config, app/feature providers, state and facade implementation.
 
-## Code scaffolding
-
-Run `ng generate component component-name --project ngxs` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project ngxs`.
-> Note: Don't forget to add `--project ngxs` or else it will be added to the default project in your `angular.json` file. 
+[NgXs](https://www.ngxs.io/) - app [demo](https://ng-state-management.jamesrobb.work/ngxs/)
 
 ## Build
 
-Run `ng build ngxs` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Publishing
-
-After building your library with `ng build ngxs`, go to the dist folder `cd dist/ngxs` and run `npm publish`.
-
-## Running unit tests
-
-Run `ng test ngxs` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+`npm run build-ngxs-lib`
