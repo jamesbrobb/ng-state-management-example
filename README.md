@@ -1,20 +1,38 @@
 
 # Angular State Management solution comparison
 
-The project demonstrates the implementation of different state management solutions within a single Angular application.
+This project demonstrates the different implementation styles/logic for existing Angular state management solutions.
 
 The following state management solutions are currently implemented:
   - [x] [NgRx](https://ngrx.io/) - app [demo](https://ng-state-management.jamesrobb.work/ngrx/)
   - [x] [NgXs](https://www.ngxs.io/) - app [demo](https://ng-state-management.jamesrobb.work/ngxs/)
   - [x] [Elf](https://github.com/ngneat/elf/)  - app [demo](https://ng-state-management.jamesrobb.work/elf/) - (successor to [Akita](https://github.com/salesforce/akita))
 
+The project is a mono-repos consisting of the following:
+
+5 libraries:
+  - [shared](https://github.com/jamesbrobb/ng-state-management-example/tree/main/libraries/shared) - shared (state agnostic) application, feature (components/models/services/etc) and utility logic
+  - [shared state](https://github.com/jamesbrobb/ng-state-management-example/tree/main/libraries/state/shared) - app and feature state slices and state facade type definitions
+  - [elf state](https://github.com/jamesbrobb/ng-state-management-example/tree/main/libraries/state/elf) - concrete elf specific app config, app/feature providers, state and facade implementation
+  - [ngrx state](https://github.com/jamesbrobb/ng-state-management-example/tree/main/libraries/state/ngrx) - concrete ngrx specific app config, app/feature providers, state and facade implementation
+  - [ngxs state](https://github.com/jamesbrobb/ng-state-management-example/tree/main/libraries/state/ngxs) - concrete ngxs specific app config, app/feature providers, state and facade implementation
+  
+2 applications:
+  - [home](https://github.com/jamesbrobb/ng-state-management-example/tree/main/projects/home) - a simple page to display the project readme
+  - [location-weather](https://github.com/jamesbrobb/ng-state-management-example/tree/main/projects/location-weather) - concrete application implementation
+
+
+## Location weather application
+
+The application is decoupled from any specific state management solution and implements the following:
+- application boostrap uses files listed in `"fileReplacements"` to configure state management solution specific providers, facade tokens and config
+- routing and route guards
+- state changes/updates driven by navigation/url changes, creating a single logic flow for user interaction and deeplinking
+- containers for ui state access and user triggered updates
+- State I/O occurs through interfaced Injection Tokens implementing a Facade pattern
+
 
 ## Build
-
-The project consists of the following:
-  - a library (libraries/shared) containing feature and application logic
-  - a library (libraries/state) containing
-  - a single application (projects/location-weather) with a separate build configuration for each solution.
 
 Each individual build can be created with the following command:
 
@@ -56,12 +74,3 @@ Each build configuration specifies the following file replacements:
   }
 }
 ```
-
-## Location weather application
-
-The application is decoupled from the specific state management solutions and implements the following:
-  - application boostrap uses files listed in `"fileReplacements"` to configure state solution specific providers and config
-  - routing
-  - route guards (for data management and deeplinking)
-  - containers for ui state access and updates
-  - State I/O occurs through interfaced Injection Tokens implementing a Repository/Facade pattern
