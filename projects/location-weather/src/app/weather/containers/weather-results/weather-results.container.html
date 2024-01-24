@@ -1,3 +1,12 @@
 <date-picker-container></date-picker-container>
 <mat-divider class="divider"></mat-divider>
-<weather-results [locationData]="(weather$ | async) || undefined"></weather-results>
+<ng-container *ngIf="weather$ | async as weather; else loading">
+  <weather-results [locationData]="weather"></weather-results>
+</ng-container>
+
+<ng-template #loading>
+  <div class="loading">
+    <span>Loading weather data...</span>
+    <mat-spinner diameter="20"></mat-spinner>
+  </div>
+</ng-template>
