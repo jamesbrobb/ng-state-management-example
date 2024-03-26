@@ -1,12 +1,16 @@
 
 # Angular State Management solution comparison
 
-This project demonstrates the different implementation styles/logic for existing Angular state management solutions.
+## What.
+
+The project demonstrates various Angular state management solutions by illustrating their implementation styles and logic through a non-trivial example.
 
 The following state management solutions are currently implemented:
-  - [x] [NgRx](https://ngrx.io/) - app [demo](https://ng-state-management.jamesrobb.work/ngrx/)
-  - [x] [NgXs](https://www.ngxs.io/) - app [demo](https://ng-state-management.jamesrobb.work/ngxs/)
-  - [x] [Elf](https://github.com/ngneat/elf/)  - app [demo](https://ng-state-management.jamesrobb.work/elf/) - (successor to [Akita](https://github.com/salesforce/akita))
+  - [NgRx](https://ngrx.io/) - app [demo](https://ng-state-management.jamesrobb.work/ngrx/)
+  - [NgXs](https://www.ngxs.io/) - app [demo](https://ng-state-management.jamesrobb.work/ngxs/)
+  - [Elf](https://github.com/ngneat/elf/)  - app [demo](https://ng-state-management.jamesrobb.work/elf/) - (successor to [Akita](https://github.com/salesforce/akita))
+
+---
 
 The project is a mono-repos consisting of the following:
 
@@ -20,9 +24,10 @@ The project is a mono-repos consisting of the following:
 2 applications:
   - [home](https://github.com/jamesbrobb/ng-state-management-example/tree/main/projects/home) - a simple page to display the project readme
   - [location-weather](https://github.com/jamesbrobb/ng-state-management-example/tree/main/projects/location-weather) - concrete application implementation
+<br/><br/>
 
 
-## Location weather application
+## Location weather application.
 
 The application is decoupled from any specific state management solution and implements the following:
 - application boostrap uses files listed in `"fileReplacements"` to configure state management solution specific providers, facade tokens and config
@@ -32,7 +37,7 @@ The application is decoupled from any specific state management solution and imp
 - State I/O occurs through interfaced Injection Tokens implementing a Facade pattern
 
 
-## Build
+## Build.
 
 Each individual build can be created with the following command:
 

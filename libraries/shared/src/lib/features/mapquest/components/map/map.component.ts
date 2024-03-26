@@ -15,7 +15,7 @@ import {MAPQUEST_KEY} from "../../services/mapquest.service";
     deps: [Renderer2]
   }],
   templateUrl: './map.component.html',
-  styleUrls: ['./map.component.css']
+  styleUrls: ['./map.component.css'],
 })
 export class MapComponent implements OnChanges {
 
